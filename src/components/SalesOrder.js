@@ -51,7 +51,7 @@ const SalesOrder = () => {
   const totalsStyle = {fontSize: '1.5rem', marginRight: '2rem'}
 
   return (
-    <div className='container'>
+    <div className='container-fluid'>
       <form style={{ padding: '1rem' }}>
         <div className='header'>
           <h1>Alowaid Trading Est.</h1>

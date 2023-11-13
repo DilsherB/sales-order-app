@@ -1,3 +1,7 @@
+html {
+  font-size: clamp(0.3rem, 1vw, 2rem);
+}
+
 .header {
   text-align: center;
 }
@@ -28,6 +32,6 @@ input {
   text-align: center;
 }
 
-html {
-  font-size: clamp(0.5rem, 1vw, 1.5rem); 
+input:focus {
+  font-size: 200%;
 }
