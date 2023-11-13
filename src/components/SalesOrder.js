@@ -51,20 +51,23 @@ const SalesOrder = () => {
   const totalsStyle = {fontSize: '1.5rem', marginRight: '2rem'}
 
   return (
-    <>
+    <div className='container'>
       <form style={{ padding: '1rem' }}>
         <div className='header'>
           <h1>Alowaid Trading Est.</h1>
           <h2>Sales Order</h2>
           <hr />
         </div>
-        <div className='customerData' style={{padding: '1rem'}}>
-          <div style={{display: 'inline-flex'}}>
-            <h3>Purchase Order #: </h3>
+        {/* <div className='customerData' style={{padding: '1rem'}}> */}
+        <div className='d-flex justify-content-evenly'>
+          {/* <div style={{display: 'inline-flex'}}> */}
+          <div className='col-6'>
+            <h3>P.O. #: &nbsp;</h3>
             <input type='text'/>
           </div>
-          <div style={{display: 'inline-flex'}}>
-            <h3>Customer Code: </h3>
+          {/* <div style={{display: 'inline-flex'}}> */}
+          <div className='col-6'>
+            <h3>Cust. Code: &nbsp;</h3>
             <input
               type='text'
               id='customerCode'
@@ -156,7 +159,7 @@ const SalesOrder = () => {
         </table>
         <button onClick={addRow} className='btn btn-primary btn-block'>Add Row</button>
       </form>
-    </>
+    </div>
   );
 };
 

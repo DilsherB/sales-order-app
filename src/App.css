@@ -27,3 +27,7 @@ input {
   border-radius: 5px;
   text-align: center;
 }
+
+html {
+  font-size: clamp(0.5rem, 1vw, 1.5rem); 
+}
