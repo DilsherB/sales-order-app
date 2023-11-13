@@ -48,7 +48,7 @@ const SalesOrder = () => {
 
   const totalAmount = itemsArray.reduce((total, item) => total + item.amount, 0);
 
-  const totalsStyle = {fontSize: '2rem', textAlign: 'right', marginRight: '2rem'}
+  const totalsStyle = {fontSize: '1.5rem', marginRight: '2rem'}
 
   return (
     <>
@@ -75,7 +75,7 @@ const SalesOrder = () => {
           </div>
         </div>
           <h3>Customer Name: <i style={{color: 'blue'}}>{name}</i></h3>
-          <table>
+          <table class="table table-dark table-striped">
           <thead>
             <tr>
               <th>Item Code</th>
@@ -100,7 +100,12 @@ const SalesOrder = () => {
                   />
                 </td>
                 <td>
-                  <i style={{ color: 'blue' }}>{item.itemName}</i>
+                  <input
+                    type='text'
+                    style={{ color: 'blue' }}
+                    value={item.itemName}
+                    disabled
+                  />
                 </td>
                 <td>
                   <input
@@ -133,13 +138,22 @@ const SalesOrder = () => {
                 </td>
               </tr>
             ))}
+            <tr style={totalsStyle}>
+              <td colSpan='4'>Total Amount</td>
+              <td>{parseFloat(totalAmount).toFixed(2)} SAR </td>
+            </tr>
+            <tr style={totalsStyle}>
+              <td colSpan='4'>Total VAT</td>
+              <td>{(totalAmount*0.15).toFixed(2)} SAR</td>
+            </tr>
+            <tr style={totalsStyle}>
+              <td colSpan='4'>Net Including VAT</td>
+              <td>{parseFloat(totalAmount+(totalAmount*0.15)).toFixed(2)} SAR</td>
+            </tr>
           </tbody>
         </table>
-        <button onClick={addRow}>Add Row</button>
+        <button onClick={addRow} className='btn btn-primary btn-block'>Add Row</button>
       </form>
-      <div style={totalsStyle}>Total: {totalAmount}</div>
-      <div style={totalsStyle}>VAT: {totalAmount*0.15}</div>
-      <div style={totalsStyle}>Net Total: {totalAmount+(totalAmount*0.15)}</div>
     </>
   );
 };
