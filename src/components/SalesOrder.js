@@ -138,16 +138,18 @@ const SalesOrder = () => {
                 </td>
               </tr>
             ))}
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Total Amount</th>
+              <th>Total VAT</th>
+              <th>Net including VAT</th>
+            </tr>
             <tr style={totalsStyle}>
-              <td colSpan='4'>Total Amount</td>
+              <td></td>
+              <td></td>
               <td>{parseFloat(totalAmount).toFixed(2)} SAR </td>
-            </tr>
-            <tr style={totalsStyle}>
-              <td colSpan='4'>Total VAT</td>
               <td>{(totalAmount*0.15).toFixed(2)} SAR</td>
-            </tr>
-            <tr style={totalsStyle}>
-              <td colSpan='4'>Net Including VAT</td>
               <td>{parseFloat(totalAmount+(totalAmount*0.15)).toFixed(2)} SAR</td>
             </tr>
           </tbody>
