@@ -1,5 +1,5 @@
 html {
-  font-size: clamp(0.3rem, 1vw, 2rem);
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
 }
 
 .header {
@@ -15,6 +15,8 @@ html {
 
 table {
   width: 95vw;
+  margin: 0 auto;
+  padding: 0;
 }
 td, th {
   border: 2px solid #ddd;
@@ -25,13 +27,42 @@ td, th {
 }
 
 input {
-  /* width: 100%; */
+  width: 100%;
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 5px;
   text-align: center;
 }
+@media (max-width: 768px) {
+  input {
+    /* width: 100%; */
+    padding: auto 0;
+  }
+  
+  input:focus {
+    font-size: 200%;
+  }
+  /* .table {
+    font-size: 150%;
+    padding: 0;
+    margin: 0;
+  } */
+}
 
-input:focus {
-  font-size: 200%;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.oneUnit {
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
