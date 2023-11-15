@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import customers from "../data/customers";
 import items from "../data/items";
 import ShowItems from "./ShowItems";
-import XLSX from "xlsx";
+import * as XLSX from "xlsx";
 
 const SalesOrder = () => {
   const [dept, setDept] = useState("");
@@ -11,6 +11,8 @@ const SalesOrder = () => {
   const [customerId, setCustomerId] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const [deliveryDate, setDeliveryDate] = useState("");
+  const [po, setPo] = useState("");
+  const [rem, setRem] = useState("");
   // const [showArix, setShowArix] = useState(true);
   const [itemsArray, setItemsArray] = useState([
     {
@@ -98,17 +100,17 @@ const SalesOrder = () => {
 
   const handleDept = () => {
     setDept(document.querySelector("#dept").value);
-  }
+  };
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet([
       {
         "Order Date": currentDate,
         "Delivery Date": deliveryDate,
-        "P.O.": "", // Add your P.O. value here
+        "P.O.": po, // Add your P.O. value here
         "Customer Code": customerId,
         "Customer Name": name,
-        Remarks: "", // Add your Remarks value here
+        Remarks: rem, // Add your Remarks value here
       },
       // ... (add more rows if needed)
       ...itemsArray.map((item) => ({
@@ -142,13 +144,21 @@ const SalesOrder = () => {
           </div>
           <div className="col-5 oneUnit">
             <h3>Delivery Date: &nbsp;</h3>
-            <input type="date" value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)} />
+            <input
+              type="date"
+              value={deliveryDate}
+              onChange={(e) => setDeliveryDate(e.target.value)}
+            />
           </div>
         </div>
         <div className="d-flex">
           <div className="col-6 oneUnit">
             <h3>P.O.: &nbsp;</h3>
-            <input type="text" />
+            <input
+              type="text"
+              value={po}
+              onChange={(e) => setPo(e.target.value)}
+            />
           </div>
           <div className="col-5 oneUnit">
             <h3>Cust. Code: &nbsp;</h3>
@@ -162,11 +172,16 @@ const SalesOrder = () => {
             />
           </div>
         </div>
-        <h3 style={{padding: "1rem"}}>
+        <h3 style={{ padding: "1rem" }}>
           Customer Name: <i style={{ color: "blue" }}>{name}</i>
         </h3>
         <h3 className="oneUnit">
-          Remarks: <input type="text" />
+          Remarks:{" "}
+          <input
+            type="text"
+            value={rem}
+            onChange={(e) => setRem(e.target.value)}
+          />
         </h3>
         <table class="table table-dark table-striped">
           <thead>
@@ -176,12 +191,30 @@ const SalesOrder = () => {
               </th>
             </tr>
             <tr>
-              <th>کود <br/>ItemCode</th>
-              <th>حبہ <br/>Pack</th>
-              <th>مقدار <br/>Quantity</th>
-              <th>مجان <br/>Free Goodsا</th>
-              <th>سعر <br/>Unit Price</th>
-              <th>%دسکاونت <br/>Disc. </th>
+              <th>
+                کود <br />
+                ItemCode
+              </th>
+              <th>
+                حبہ <br />
+                Pack
+              </th>
+              <th>
+                مقدار <br />
+                Quantity
+              </th>
+              <th>
+                مجان <br />
+                Free Goodsا
+              </th>
+              <th>
+                سعر <br />
+                Unit Price
+              </th>
+              <th>
+                %دسکاونت <br />
+                Disc.{" "}
+              </th>
               {/* <th>Amount</th> */}
             </tr>
           </thead>
@@ -262,9 +295,18 @@ const SalesOrder = () => {
               </tr>
             ))}
             <tr>
-              <th colSpan={2}>کامل <br/>Total</th>
-              <th colSpan={2}>ویت <br/>VAT</th>
-              <th colSpan={2}>نیت <br/>Net</th>
+              <th colSpan={2}>
+                کامل <br />
+                Total
+              </th>
+              <th colSpan={2}>
+                ویت <br />
+                VAT
+              </th>
+              <th colSpan={2}>
+                نیت <br />
+                Net
+              </th>
             </tr>
             <tr style={totalsStyle}>
               <td colSpan={2}>{addCommas(parseFloat(totalAmount))}</td>
@@ -279,16 +321,20 @@ const SalesOrder = () => {
           <button onClick={addRow} className="btn btn-primary col-5">
             Add Row
           </button>
-          <button
-            onClick={exportToExcel}
-            className="btn btn-success col-5">
+          <button onClick={exportToExcel} className="btn btn-success col-5">
             Export to Excel
           </button>
         </div>
       </form>
       <div>
-        <input type="text" id="dept" value={dept} onChange={handleDept} className="oneUnit"/>
-        <ShowItems dept={dept}/>
+        <input
+          type="text"
+          id="dept"
+          value={dept}
+          onChange={handleDept}
+          className="oneUnit"
+        />
+        <ShowItems dept={dept} />
       </div>
     </div>
   );
