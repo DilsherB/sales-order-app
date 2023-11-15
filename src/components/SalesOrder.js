@@ -252,7 +252,7 @@ const SalesOrder = () => {
         </button>
       </form>
       <div>
-        <input type="text" id="dept" value={dept} onChange={handleDept} />
+        <input type="text" id="dept" value={dept} onChange={handleDept} className="oneUnit"/>
         <ShowItems dept={dept}/>
       </div>
     </div>
