@@ -13,7 +13,6 @@ const SalesOrder = () => {
   const [deliveryDate, setDeliveryDate] = useState("");
   const [po, setPo] = useState("");
   const [rem, setRem] = useState("");
-  // const [showArix, setShowArix] = useState(true);
   const [itemsArray, setItemsArray] = useState([
     {
       id: 1,
@@ -107,12 +106,11 @@ const SalesOrder = () => {
       {
         "Order Date": currentDate,
         "Delivery Date": deliveryDate,
-        "P.O.": po, // Add your P.O. value here
+        "P.O.": po,
         "Customer Code": customerId,
         "Customer Name": name,
-        Remarks: rem, // Add your Remarks value here
+        Remarks: rem,
       },
-      // ... (add more rows if needed)
       ...itemsArray.map((item) => ({
         "Item Code": item.itemId,
         Pack: item.itemFraction,
@@ -120,7 +118,6 @@ const SalesOrder = () => {
         "Free Goods": item.freeGoods,
         "Unit Price": item.itemPrice,
         Discount: item.discount,
-        // Add more fields if needed
       })),
     ]);
 
