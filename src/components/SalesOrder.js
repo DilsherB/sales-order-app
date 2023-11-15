@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import customers from "../data/customers";
 import items from "../data/items";
 import ShowItems from "./ShowItems";
+import XLSX from "xlsx";
 
 const SalesOrder = () => {
   const [dept, setDept] = useState("");
@@ -99,6 +100,33 @@ const SalesOrder = () => {
     setDept(document.querySelector("#dept").value);
   }
 
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet([
+      {
+        "Order Date": currentDate,
+        "Delivery Date": deliveryDate,
+        "P.O.": "", // Add your P.O. value here
+        "Customer Code": customerId,
+        "Customer Name": name,
+        Remarks: "", // Add your Remarks value here
+      },
+      // ... (add more rows if needed)
+      ...itemsArray.map((item) => ({
+        "Item Code": item.itemId,
+        Pack: item.itemFraction,
+        Quantity: item.qty,
+        "Free Goods": item.freeGoods,
+        "Unit Price": item.itemPrice,
+        Discount: item.discount,
+        // Add more fields if needed
+      })),
+    ]);
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sales Order");
+    XLSX.writeFile(wb, "sales_order.xlsx");
+  };
+
   return (
     <div className="container-fluid">
       <form style={{ padding: "1rem" }}>
@@ -112,7 +140,7 @@ const SalesOrder = () => {
             <h3>Order Date: &nbsp;</h3>
             <input type="date" value={currentDate} />
           </div>
-          <div className="col-6 oneUnit">
+          <div className="col-5 oneUnit">
             <h3>Delivery Date: &nbsp;</h3>
             <input type="date" value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)} />
           </div>
@@ -122,7 +150,7 @@ const SalesOrder = () => {
             <h3>P.O.: &nbsp;</h3>
             <input type="text" />
           </div>
-          <div className="col-6 oneUnit">
+          <div className="col-5 oneUnit">
             <h3>Cust. Code: &nbsp;</h3>
             <input
               type="text"
@@ -134,7 +162,7 @@ const SalesOrder = () => {
             />
           </div>
         </div>
-        <h3>
+        <h3 style={{padding: "1rem"}}>
           Customer Name: <i style={{ color: "blue" }}>{name}</i>
         </h3>
         <h3 className="oneUnit">
@@ -247,9 +275,16 @@ const SalesOrder = () => {
             </tr>
           </tbody>
         </table>
-        <button onClick={addRow} className="btn btn-primary btn-block">
-          Add Row
-        </button>
+        <div className="d-flex justify-content-between">
+          <button onClick={addRow} className="btn btn-primary col-5">
+            Add Row
+          </button>
+          <button
+            onClick={exportToExcel}
+            className="btn btn-success col-5">
+            Export to Excel
+          </button>
+        </div>
       </form>
       <div>
         <input type="text" id="dept" value={dept} onChange={handleDept} className="oneUnit"/>
