@@ -94,6 +94,12 @@ With Sales Order, you can capture orders anytime, anywhere, saving you valuable 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+> [Live demo](http://salesorder.netlify.app/)
+
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -108,7 +114,8 @@ In order to run this project you need:</br>
 
 ### Setup
 
-Clone this repository to your desired folder: </br>
+Clone this repository to your desired folder by running the followin command: </br>
+`git clone https://github.com/DilsherB/sales-order-app.git` </br>
 then `cd "foldername"`</br>
 
 ### Install
@@ -139,7 +146,7 @@ You can deploy this project using:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Author1**
+👤 **Dilsher Balouch**
 
 - GitHub: [@DilsherB](https://github.com/DilsherB)
 - Twitter: [@_brilliantMindz](https://twitter.com/_brilliantMindz)
@@ -151,9 +158,9 @@ You can deploy this project using:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[perform basic calculations]**
-- [ ] **[you can read math related quotes]**
-- [ ] **[It fetches data from API]**
+- [ ] **[Login page will be added to make sure authorized person is using the app]**
+- [ ] **[Email facility direct from the page will be added]**
+- [ ] **[System will automatically take the email address and name of the logged in person and will send the email to the sales invoice officer automatically]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,7 +170,7 @@ You can deploy this project using:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/DilsherB/math-magician/issues).
+Feel free to check the [issues page](https://github.com/DilsherB/sales-order-app/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -179,7 +186,7 @@ If you like this project please give it a star to encourage me.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse.
+I would like to thank Microverse who have made me able to build such projects.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
