@@ -34,7 +34,7 @@
 
 # 📖 [Sales Order] <a name="about-project"></a>
 
-**[Sales Order]** 
+# **[Sales Order]** 
 ### Introducing Sales Order: The Salesperson's Productivity Powerhouse
 
 Streamline your sales process and eliminate paper clutter with Sales Order, the revolutionary app that empowers salespeople to capture essential customer information and seamlessly generate sales orders on the go.
