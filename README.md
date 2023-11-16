@@ -34,29 +34,29 @@
 
 # 📖 [Sales Order] <a name="about-project"></a>
 
-# **[Sales Order]** 
 ### Introducing Sales Order: The Salesperson's Productivity Powerhouse
 
 Streamline your sales process and eliminate paper clutter with Sales Order, the revolutionary app that empowers salespeople to capture essential customer information and seamlessly generate sales orders on the go.
 
-Say goodbye to time-consuming paperwork
+### Say goodbye to time-consuming paperwork
 
 Eliminate the hassle of handwritten sales orders and embrace the convenience of digital data entry. Sales Order lets you effortlessly input customer details, product specifications, and order quantities directly from your smartphone or tablet.
 
-Generate sales invoices with a single click
+### Generate sales invoices with a single click
 
 Once you've completed capturing customer information, Sales Order automatically generates a comprehensive sales order in Excel format. Simply download the file and send it to your office for invoice generation – no more tedious data entry required.
 
-Embrace efficiency and boost productivity
+### Embrace efficiency and boost productivity
 
 With Sales Order, you can capture orders anytime, anywhere, saving you valuable time and effort. Eliminate the need to return to the office for data entry, allowing you to focus on what matters most – closing deals and building customer relationships.
 
-Experience the Sales Order difference:
-
-    Paperless sales process
-    Streamlined order generation
-    Enhanced productivity
-    Effortless data sharing
+### Experience the Sales Order difference:
+<ol>
+    <li>Paperless sales process</li>
+    <li>Streamlined order generation</li>
+    <li>Enhanced productivity</li>
+    <li>Effortless data sharing</li>
+</ol>
 
 ## 🛠 Built With <a name="built-with"></a>
 
