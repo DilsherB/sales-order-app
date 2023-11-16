@@ -65,10 +65,12 @@ With Sales Order, you can capture orders anytime, anywhere, saving you valuable 
 > Sales Order is a web-app to streamline the sales process.
 
 <details>
-  <summary>Client</summary>
+  <summary>Framework</summary>
   <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
   </ul>
+</details>
+<details>
   <summary>styling</summary>
   <ul>
     <li><a href="https://www.npmjs.com/package/bootstrap">Bootstrap</a></li>
