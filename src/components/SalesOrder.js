@@ -130,35 +130,28 @@ const SalesOrder = () => {
     XLSX.writeFile(wb, "sales_order.xlsx");
   };
 
-  const [showArix, setShowArix] = useState(false);
-  const handleShowArix = () => {
-    setShowArix(!showArix);
-    setShowDuni(false);
-    setSilkRoute(false);
-    setRoyalCotton(false);
-  };
-  
-  const [showDuni, setShowDuni] = useState(false);
-  const handleShowDuni = () => {
-    setShowDuni(!showDuni);
-    setShowArix(false);
-    setSilkRoute(false);
-    setRoyalCotton(false);
-  };
-  const [silkRoute, setSilkRoute] = useState(false);
-  const handleShowSilkRoute = () => {
-    setSilkRoute(!silkRoute);
-    setShowArix(false);
-    setShowDuni(false);
-    setRoyalCotton(false);
-  };
-  const [royalCotton, setRoyalCotton] = useState(false);
-  const handleShowRoyalCotton = () => {
-    setRoyalCotton(!royalCotton);
-    setShowArix(false);
-    setShowDuni(false);
-    setSilkRoute(false);
-  };
+const [activeComponent, setActiveComponent] = useState(null);
+
+const handleShowComponent = (component) => {
+  setActiveComponent((prev) => (prev === component ? null : component));
+};
+
+// Arix
+const showArix = activeComponent === "arix";
+const handleShowArix = () => handleShowComponent("arix");
+
+// Duni
+const showDuni = activeComponent === "duni";
+const handleShowDuni = () => handleShowComponent("duni");
+
+// SilkRoute
+const silkRoute = activeComponent === "silkRoute";
+const handleShowSilkRoute = () => handleShowComponent("silkRoute");
+
+// RoyalCotton
+const royalCotton = activeComponent === "royalCotton";
+const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
+
 
   return (
     <div className="container-fluid">
