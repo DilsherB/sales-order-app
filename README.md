@@ -98,7 +98,7 @@ With Sales Order, you can capture orders anytime, anywhere, saving you valuable 
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> [Live demo](http://salesorder.netlify.app/)
+> [Live demo](https://sales-order.netlify.app/)
 
 <!-- GETTING STARTED -->
 
