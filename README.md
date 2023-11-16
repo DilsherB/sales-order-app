@@ -83,9 +83,14 @@ With Sales Order, you can capture orders anytime, anywhere, saving you valuable 
 
 > You can.
 
-- **[perform basic calculations]**
-- **[you can read math related quotes]**
-- **[It fetches data from API]**
+- **[automatically have current date]**
+- **[You can enter delivery date]**
+- **[On entering customer code you will get customer name automatically]**
+- **[You can enter as many items as you want to make sales order]**
+- **[On entering 'item code', 'item fraction' and 'item price' will automatically come up]**
+- **[You can add new row by clicking 'Add row' button]**
+- **[After completing the sales order, you can download all information as an Excel file by clicking on 'Export to Excel' button]**
+- **[For assistant of the salesman there is a section at the end of the app where you can see all items by clicking on relative icon]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
