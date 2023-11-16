@@ -62,26 +62,16 @@ With Sales Order, you can capture orders anytime, anywhere, saving you valuable 
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Sales Order is a web-app where you can perform basic calculations and can read quote about maths.
+> Sales Order is a web-app to streamline the sales process.
 
 <details>
   <summary>Client</summary>
   <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
   </ul>
-</details>
-
-<details>
-  <summary>Server</summary>
+  <summary>styling</summary>
   <ul>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-  </ul>
-</details>
-
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+    <li><a href="https://www.npmjs.com/package/bootstrap">Bootstrap</a></li>
   </ul>
 </details>
 
