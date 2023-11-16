@@ -33,7 +33,7 @@ const SalesOrder = () => {
 
   const showCode = (itemCode, index) => {
     items.forEach((key) => {
-      if (key.code === itemCode.toUpperCase()) {
+      if ((key.code).toUpperCase() === itemCode.toUpperCase()) {
         const updatedItemsArray = [...itemsArray];
         updatedItemsArray[index].itemName = key.name;
         updatedItemsArray[index].itemFraction = key.fraction;
