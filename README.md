@@ -1,30 +1,8 @@
 <a name="readme-top"></a>
 
-<!--
-HOW TO USE:
-This is an example of how you may give instructions on setting up your project locally.
-
-Modify this file to match your project and remove sections that don't apply.
-
-REQUIRED SECTIONS:
-- Table of Contents
-- About the Project
-  - Built With
-  - Live Demo
-- Getting Started
-- Authors
-- Future Features
-- Contributing
-- Show your support
-- Acknowledgements
-- License
-
-After you're finished please remove all the comments and instructions!
--->
-
 <div align="center">
 
-  <h3><b>Math Magicians README Template</b></h3>
+  <h3><b>Sales Order App(React)</b></h3>
 
 </div>
 
@@ -54,15 +32,37 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Math Magicians] <a name="about-project"></a>
+# 📖 [Sales Order] <a name="about-project"></a>
 
-**[Math Magicians]** is a web-app where you can perform basic calculations and can read quote about maths.
+**[Sales Order]** 
+### Introducing Sales Order: The Salesperson's Productivity Powerhouse
+
+Streamline your sales process and eliminate paper clutter with Sales Order, the revolutionary app that empowers salespeople to capture essential customer information and seamlessly generate sales orders on the go.
+
+Say goodbye to time-consuming paperwork
+
+Eliminate the hassle of handwritten sales orders and embrace the convenience of digital data entry. Sales Order lets you effortlessly input customer details, product specifications, and order quantities directly from your smartphone or tablet.
+
+Generate sales invoices with a single click
+
+Once you've completed capturing customer information, Sales Order automatically generates a comprehensive sales order in Excel format. Simply download the file and send it to your office for invoice generation – no more tedious data entry required.
+
+Embrace efficiency and boost productivity
+
+With Sales Order, you can capture orders anytime, anywhere, saving you valuable time and effort. Eliminate the need to return to the office for data entry, allowing you to focus on what matters most – closing deals and building customer relationships.
+
+Experience the Sales Order difference:
+
+    Paperless sales process
+    Streamlined order generation
+    Enhanced productivity
+    Effortless data sharing
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Math Magicians is a web-app where you can perform basic calculations and can read quote about maths.
+> Sales Order is a web-app where you can perform basic calculations and can read quote about maths.
 
 <details>
   <summary>Client</summary>
