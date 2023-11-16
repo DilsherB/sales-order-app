@@ -5,8 +5,7 @@ const ShowItems = ({dept}) => {
   const sortedItems = items.sort((a, b) => a.code.localeCompare(b.code))
   return (
     <div>
-      <h1 className='text-center'>Items information</h1>
-      <table>
+      <table className='table'>
         <thead>
           <tr>
             <th>Code</th>

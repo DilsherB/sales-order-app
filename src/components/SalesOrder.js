@@ -3,9 +3,13 @@ import customers from "../data/customers";
 import items from "../data/items";
 import ShowItems from "./ShowItems";
 import * as XLSX from "xlsx";
+import arixlogo from "./images/arixlogo.jpg";
+import dunilogo from "./images/dunilogo.png";
+import srlogo from "./images/srlogo.jpg";
+import rclogo from "./images/rclogo.jpg";
 
 const SalesOrder = () => {
-  const [dept, setDept] = useState("");
+  // const [dept, setDept] = useState("");
   const initialState = "";
   const [name, setName] = useState(initialState);
   const [customerId, setCustomerId] = useState("");
@@ -97,9 +101,9 @@ const SalesOrder = () => {
     setCurrentDate(getCurrentDate);
   }, []);
 
-  const handleDept = () => {
-    setDept(document.querySelector("#dept").value);
-  };
+  // const handleDept = () => {
+  //   setDept(document.querySelector("#dept").value);
+  // };
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet([
@@ -124,6 +128,36 @@ const SalesOrder = () => {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sales Order");
     XLSX.writeFile(wb, "sales_order.xlsx");
+  };
+
+  const [showArix, setShowArix] = useState(false);
+  const handleShowArix = () => {
+    setShowArix(!showArix);
+    setShowDuni(false);
+    setSilkRoute(false);
+    setRoyalCotton(false);
+  };
+  
+  const [showDuni, setShowDuni] = useState(false);
+  const handleShowDuni = () => {
+    setShowDuni(!showDuni);
+    setShowArix(false);
+    setSilkRoute(false);
+    setRoyalCotton(false);
+  };
+  const [silkRoute, setSilkRoute] = useState(false);
+  const handleShowSilkRoute = () => {
+    setSilkRoute(!silkRoute);
+    setShowArix(false);
+    setShowDuni(false);
+    setRoyalCotton(false);
+  };
+  const [royalCotton, setRoyalCotton] = useState(false);
+  const handleShowRoyalCotton = () => {
+    setRoyalCotton(!royalCotton);
+    setShowArix(false);
+    setShowDuni(false);
+    setSilkRoute(false);
   };
 
   return (
@@ -180,7 +214,7 @@ const SalesOrder = () => {
             onChange={(e) => setRem(e.target.value)}
           />
         </h3>
-        <table class="table table-dark table-striped">
+        <table class="table table-info table-striped">
           <thead>
             <tr>
               <th colSpan={6}>
@@ -323,16 +357,25 @@ const SalesOrder = () => {
           </button>
         </div>
       </form>
-      <div>
-        <input
+      <h1 className='text-center mt-5'>Items information</h1>
+      <div className="container-fluid d-flex justify-content-around mb-2">
+        <img src={arixlogo} alt="ARIX" onClick={handleShowArix} />
+        <img src={dunilogo} alt="DUNI" onClick={handleShowDuni} />
+        <img src={srlogo} alt="Silk Route" onClick={handleShowSilkRoute} />
+        <img src={rclogo} alt="Royal Cotton" onClick={handleShowRoyalCotton} />
+      </div>
+      {showArix && <ShowItems dept={"ax"} />}
+      {showDuni && <ShowItems dept={"dn"} />}
+      {silkRoute && <ShowItems dept={"sr"} />}
+      {royalCotton && <ShowItems dept={"rc"} />}
+      {/* <input
           type="text"
           id="dept"
           value={dept}
           onChange={handleDept}
           className="oneUnit"
-        />
-        <ShowItems dept={dept} />
-      </div>
+        /> */}
+      {/* <ShowItems dept={dept} /> */}
     </div>
   );
 };
