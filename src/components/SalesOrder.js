@@ -32,12 +32,12 @@ const SalesOrder = () => {
   ]);
 
   const showCode = (itemCode, index) => {
-    items.forEach((key) => {
-      if ((key.code).toUpperCase() === itemCode.toUpperCase()) {
+    items.forEach((item) => {
+      if (item.code.toUpperCase() === itemCode.toUpperCase()) {
         const updatedItemsArray = [...itemsArray];
-        updatedItemsArray[index].itemName = key.name;
-        updatedItemsArray[index].itemFraction = key.fraction;
-        updatedItemsArray[index].itemPrice = key.price;
+        updatedItemsArray[index].itemName = item.name;
+        updatedItemsArray[index].itemFraction = item.fraction;
+        updatedItemsArray[index].itemPrice = item.price;
         setItemsArray(updatedItemsArray);
       }
     });
@@ -45,9 +45,9 @@ const SalesOrder = () => {
 
   const showName = () => {
     let customerCode = document.querySelector("#customerCode").value;
-    customers.forEach((key) => {
-      if (key.code === customerCode) {
-        setName(key.name);
+    customers.forEach((customer) => {
+      if (customer.code === customerCode) {
+        setName(customer.name);
       }
     });
   };
@@ -85,11 +85,10 @@ const SalesOrder = () => {
     0
   );
 
-  const totalsStyle = { fontSize: "1.5rem", marginRight: "2rem" };
-
   const addCommas = (number) => {
     return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
   };
+
   useEffect(() => {
     const getCurrentDate = () => {
       const today = new Date();
@@ -100,10 +99,6 @@ const SalesOrder = () => {
     };
     setCurrentDate(getCurrentDate);
   }, []);
-
-  // const handleDept = () => {
-  //   setDept(document.querySelector("#dept").value);
-  // };
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet([
@@ -130,28 +125,27 @@ const SalesOrder = () => {
     XLSX.writeFile(wb, "sales_order.xlsx");
   };
 
-const [activeComponent, setActiveComponent] = useState(null);
+  const [activeComponent, setActiveComponent] = useState(null);
 
-const handleShowComponent = (component) => {
-  setActiveComponent((prev) => (prev === component ? null : component));
-};
+  const handleShowComponent = (component) => {
+    setActiveComponent((prev) => (prev === component ? null : component));
+  };
 
-// Arix
-const showArix = activeComponent === "arix";
-const handleShowArix = () => handleShowComponent("arix");
+  // Arix
+  const showArix = activeComponent === "arix";
+  const handleShowArix = () => handleShowComponent("arix");
 
-// Duni
-const showDuni = activeComponent === "duni";
-const handleShowDuni = () => handleShowComponent("duni");
+  // Duni
+  const showDuni = activeComponent === "duni";
+  const handleShowDuni = () => handleShowComponent("duni");
 
-// SilkRoute
-const silkRoute = activeComponent === "silkRoute";
-const handleShowSilkRoute = () => handleShowComponent("silkRoute");
+  // SilkRoute
+  const silkRoute = activeComponent === "silkRoute";
+  const handleShowSilkRoute = () => handleShowComponent("silkRoute");
 
-// RoyalCotton
-const royalCotton = activeComponent === "royalCotton";
-const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
-
+  // RoyalCotton
+  const royalCotton = activeComponent === "royalCotton";
+  const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
 
   return (
     <div className="container-fluid">
@@ -332,7 +326,7 @@ const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
                 Net
               </th>
             </tr>
-            <tr style={totalsStyle}>
+            <tr>
               <td colSpan={2}>{addCommas(parseFloat(totalAmount))}</td>
               <td colSpan={2}>{addCommas(totalAmount * 0.15)}</td>
               <td colSpan={2}>
@@ -350,7 +344,7 @@ const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
           </button>
         </div>
       </form>
-      <h1 className='text-center mt-5'>Items information</h1>
+      <h1 className="text-center mt-5">Items information</h1>
       <div className="container-fluid d-flex justify-content-around mb-2">
         <img src={arixlogo} alt="ARIX" onClick={handleShowArix} />
         <img src={dunilogo} alt="DUNI" onClick={handleShowDuni} />
@@ -361,14 +355,6 @@ const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
       {showDuni && <ShowItems dept={"dn"} />}
       {silkRoute && <ShowItems dept={"sr"} />}
       {royalCotton && <ShowItems dept={"rc"} />}
-      {/* <input
-          type="text"
-          id="dept"
-          value={dept}
-          onChange={handleDept}
-          className="oneUnit"
-        /> */}
-      {/* <ShowItems dept={dept} /> */}
     </div>
   );
 };
