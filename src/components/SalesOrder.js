@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import customers from "../data/customers";
 import items from "../data/items";
 import ShowItems from "./ShowItems";
@@ -70,15 +70,25 @@ const SalesOrder = () => {
     ]);
   };
 
+  const prevItemsArray = useRef(itemsArray); // useRef to track the previous state of itemsArray
   useEffect(() => {
+  
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
       amount:
         item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100),
     }));
-
-    setItemsArray(updatedItemsArray);
+  
+    // Check if there are any changes in the itemsArray before updating the state
+    if (updatedItemsArray.length !== prevItemsArray.current.length ||
+      updatedItemsArray.some((item, index) =>
+        JSON.stringify(item) !== JSON.stringify(prevItemsArray.current[index]))
+    ) {
+      setItemsArray(updatedItemsArray);
+      prevItemsArray.current = updatedItemsArray; // Update the reference to the current state
+    }
   }, [itemsArray]);
+  
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
@@ -158,7 +168,7 @@ const SalesOrder = () => {
         <div className="d-flex">
           <div className="col-6 oneUnit">
             <h3>Order Date: &nbsp;</h3>
-            <input type="date" value={currentDate} />
+            <input type="date" value={currentDate} readOnly/>
           </div>
           <div className="col-5 oneUnit">
             <h3>Delivery Date: &nbsp;</h3>
@@ -201,7 +211,7 @@ const SalesOrder = () => {
             onChange={(e) => setRem(e.target.value)}
           />
         </h3>
-        <table class="table table-info table-striped">
+        <table className="table table-info table-striped">
           <thead>
             <tr>
               <th colSpan={6}>
