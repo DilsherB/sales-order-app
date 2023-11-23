@@ -26,6 +26,8 @@ const SalesOrder = () => {
       qty: "",
       freeGoods: "",
       itemPrice: "",
+      yourPrice: "",
+      isPriceDiff: "",
       discount: "",
       amount: "",
     },
@@ -64,6 +66,8 @@ const SalesOrder = () => {
         qty: "",
         freeGoods: "",
         itemPrice: "",
+        yourPrice: "",
+        isPriceDiff: "",
         discount: "",
         amount: "",
       },
@@ -72,23 +76,32 @@ const SalesOrder = () => {
 
   const prevItemsArray = useRef(itemsArray); // useRef to track the previous state of itemsArray
   useEffect(() => {
-  
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
       amount:
-        item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100),
+        item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100),
     }));
-  
+
     // Check if there are any changes in the itemsArray before updating the state
-    if (updatedItemsArray.length !== prevItemsArray.current.length ||
-      updatedItemsArray.some((item, index) =>
-        JSON.stringify(item) !== JSON.stringify(prevItemsArray.current[index]))
+    if (
+      updatedItemsArray.length !== prevItemsArray.current.length ||
+      updatedItemsArray.some(
+        (item, index) =>
+          JSON.stringify(item) !== JSON.stringify(prevItemsArray.current[index])
+      )
     ) {
       setItemsArray(updatedItemsArray);
       prevItemsArray.current = updatedItemsArray; // Update the reference to the current state
     }
   }, [itemsArray]);
-  
+
+  const priceDiff = () => {
+    const updatedItemsArray = itemsArray.map((item) => ({
+      ...item,
+      isPriceDiff: Number(item.yourPrice) !== Number(item.itemPrice) ? "*" : "",
+    }));
+    setItemsArray(updatedItemsArray);
+  };
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
@@ -126,6 +139,8 @@ const SalesOrder = () => {
         Quantity: item.qty,
         "Free Goods": item.freeGoods,
         "Unit Price": item.itemPrice,
+        "Your Price": item.yourPrice,
+        "Price Diff": item.isPriceDiff,
         Discount: item.discount,
       })),
     ]);
@@ -168,7 +183,7 @@ const SalesOrder = () => {
         <div className="d-flex">
           <div className="col-6 oneUnit">
             <h3>Order Date: &nbsp;</h3>
-            <input type="date" value={currentDate} readOnly/>
+            <input type="date" value={currentDate} readOnly />
           </div>
           <div className="col-5 oneUnit">
             <h3>Delivery Date: &nbsp;</h3>
@@ -235,9 +250,17 @@ const SalesOrder = () => {
                 مجان <br />
                 Free Goodsا
               </th>
-              <th>
+              <th hidden>
                 سعر <br />
                 Unit Price
+              </th>
+              <th>
+                سعر <br />
+                Your Price
+              </th>
+              <th>
+                * <br />
+                Price Diff
               </th>
               <th>
                 %دسکاونت <br />
@@ -292,7 +315,7 @@ const SalesOrder = () => {
                     }
                   />
                 </td>
-                <td>
+                <td hidden>
                   <input
                     type="number"
                     id="itemPrice"
@@ -302,6 +325,26 @@ const SalesOrder = () => {
                         updateArray(index, "itemPrice", e.target.value)
                       )
                     }
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    value={item.yourPrice}
+                    onChange={(e) =>
+                      setItemsArray(
+                        updateArray(index, "yourPrice", e.target.value)
+                      )
+                    }
+                    onBlur={priceDiff}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    style={{ color: "blue" }}
+                    value={item.isPriceDiff}
+                    readOnly
                   />
                 </td>
                 <td>
