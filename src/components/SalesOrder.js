@@ -7,9 +7,13 @@ import arixlogo from "./images/arixlogo.jpg";
 import dunilogo from "./images/dunilogo.png";
 import srlogo from "./images/srlogo.jpg";
 import rclogo from "./images/rclogo.jpg";
+import {
+  getCurrentDate,
+  updateArray,
+  addCommas,
+} from "./salesOrderUtils";
 
 const SalesOrder = () => {
-  // const [dept, setDept] = useState("");
   const initialState = "";
   const [name, setName] = useState(initialState);
   const [customerId, setCustomerId] = useState("");
@@ -109,18 +113,18 @@ const SalesOrder = () => {
     0
   );
 
-  const addCommas = (number) => {
-    return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
-  };
+  // const addCommas = (number) => {
+  //   return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  // };
 
   useEffect(() => {
-    const getCurrentDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = (today.getMonth() + 1).toString().padStart(2, "0");
-      const day = today.getDate().toString().padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    };
+    // const getCurrentDate = () => {
+    //   const today = new Date();
+    //   const year = today.getFullYear();
+    //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    //   const day = today.getDate().toString().padStart(2, "0");
+    //   return `${year}-${month}-${day}`;
+    // };
     setCurrentDate(getCurrentDate);
   }, []);
 
@@ -415,12 +419,12 @@ const SalesOrder = () => {
   );
 };
 
-function updateArray(index, key, value) {
-  return function (prevState) {
-    const updatedItemsArray = [...prevState];
-    updatedItemsArray[index][key] = value;
-    return updatedItemsArray;
-  };
-}
+// function updateArray(index, key, value) {
+//   return function (prevState) {
+//     const updatedItemsArray = [...prevState];
+//     updatedItemsArray[index][key] = value;
+//     return updatedItemsArray;
+//   };
+// }
 
 export default SalesOrder;
