@@ -17,7 +17,6 @@ const SalesOrder = () => {
   const [deliveryDate, setDeliveryDate] = useState("");
   const [po, setPo] = useState("");
   const [rem, setRem] = useState("");
-  const [isPriceDiff, setIsPriceDiff] = useState("");
   const [itemsArray, setItemsArray] = useState([
     {
       id: 1,
@@ -27,7 +26,6 @@ const SalesOrder = () => {
       qty: "",
       freeGoods: "",
       itemPrice: "",
-      isPriceDiff: "",
       discount: "",
       amount: "",
     },
@@ -66,7 +64,6 @@ const SalesOrder = () => {
         qty: "",
         freeGoods: "",
         itemPrice: "",
-        isPriceDiff: "",
         discount: "",
         amount: "",
       },
@@ -113,20 +110,6 @@ const SalesOrder = () => {
     setCurrentDate(getCurrentDate);
   }, []);
 
-  const priceDiff = () => {
-    const itemCode = document.querySelector("#itemCode").value;
-    const itemPrice = document.querySelector("#itemPrice").value;
-    items.forEach((item) => {
-      if (item.code.toUpperCase() === itemCode.toUpperCase()) {
-        if (Number(itemPrice) !== item.price) {
-          setIsPriceDiff("different");
-        } else {
-          setIsPriceDiff("same");
-        }
-      }
-    });
-  }
-
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet([
       {
@@ -143,7 +126,6 @@ const SalesOrder = () => {
         Quantity: item.qty,
         "Free Goods": item.freeGoods,
         "Unit Price": item.itemPrice,
-        "Is Price Different": item.isPriceDiff,
         Discount: item.discount,
       })),
     ]);
@@ -258,10 +240,6 @@ const SalesOrder = () => {
                 Unit Price
               </th>
               <th>
-                %سعر مختلف <br />
-                Is Price Different
-              </th>
-              <th>
                 %دسکاونت <br />
                 Disc.{" "}
               </th>
@@ -324,14 +302,6 @@ const SalesOrder = () => {
                         updateArray(index, "itemPrice", e.target.value)
                       )
                     }
-                    onBlur={priceDiff}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={isPriceDiff}
-                    readOnly
                   />
                 </td>
                 <td>
