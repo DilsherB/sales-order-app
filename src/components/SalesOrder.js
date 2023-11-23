@@ -258,7 +258,7 @@ const SalesOrder = () => {
                 سعر <br />
                 Your Price
               </th>
-              <th>
+              <th hidden>
                 * <br />
                 Price Diff
               </th>
@@ -266,7 +266,7 @@ const SalesOrder = () => {
                 %دسکاونت <br />
                 Disc.{" "}
               </th>
-              {/* <th>Amount</th> */}
+              <th hidden>Amount</th>
             </tr>
           </thead>
           <tbody>
@@ -339,7 +339,7 @@ const SalesOrder = () => {
                     onBlur={priceDiff}
                   />
                 </td>
-                <td>
+                <td hidden>
                   <input
                     type="text"
                     style={{ color: "blue" }}
@@ -358,13 +358,13 @@ const SalesOrder = () => {
                     }
                   />
                 </td>
-                {/* <td>
+                <td hidden>
                   <input
                     type='number'
                     value={item.amount}
                     readOnly
                   />
-                </td> */}
+                </td>
               </tr>
             ))}
             <tr>
