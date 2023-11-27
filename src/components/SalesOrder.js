@@ -7,11 +7,7 @@ import arixlogo from "./images/arixlogo.jpg";
 import dunilogo from "./images/dunilogo.png";
 import srlogo from "./images/srlogo.jpg";
 import rclogo from "./images/rclogo.jpg";
-import {
-  getCurrentDate,
-  updateArray,
-  addCommas,
-} from "./salesOrderUtils";
+import { getCurrentDate, updateArray, addCommas } from "./salesOrderUtils";
 
 const SalesOrder = () => {
   const initialState = "";
@@ -21,6 +17,7 @@ const SalesOrder = () => {
   const [deliveryDate, setDeliveryDate] = useState("");
   const [po, setPo] = useState("");
   const [rem, setRem] = useState("");
+  const [selectedItem, setSelectedItem] = useState(null);
   const [itemsArray, setItemsArray] = useState([
     {
       id: 1,
@@ -60,22 +57,21 @@ const SalesOrder = () => {
 
   const addRow = () => {
     const newId = itemsArray.length + 1;
-    setItemsArray([
-      ...itemsArray,
-      {
-        id: newId,
-        itemId: "",
-        itemName: "",
-        itemFraction: "",
-        qty: "",
-        freeGoods: "",
-        itemPrice: "",
-        yourPrice: "",
-        isPriceDiff: "",
-        discount: "",
-        amount: "",
-      },
-    ]);
+    const newItem = {
+      id: newId,
+      itemId: "",
+      itemName: "",
+      itemFraction: "",
+      qty: "",
+      freeGoods: "",
+      itemPrice: "",
+      yourPrice: "",
+      isPriceDiff: "",
+      discount: "",
+      amount: "",
+    };
+
+    setItemsArray([...itemsArray, newItem]);
   };
 
   const prevItemsArray = useRef(itemsArray); // useRef to track the previous state of itemsArray
@@ -102,30 +98,53 @@ const SalesOrder = () => {
   const priceDiff = () => {
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
-      isPriceDiff: 
-        item.yourPrice > item.itemPrice ? "**" : item.yourPrice < item.itemPrice ? "*" : "",
+      isPriceDiff:
+        item.yourPrice > item.itemPrice
+          ? "**"
+          : item.yourPrice < item.itemPrice
+          ? "*"
+          : "",
     }));
     setItemsArray(updatedItemsArray);
+  };
+
+  const handleItemSelect = (selectedItem) => {
+    setSelectedItem(selectedItem);
+
+    if (selectedItem) {
+      const lastIndex = itemsArray.length - 1;
+
+      setItemsArray((prevItems) =>
+        prevItems.map((item, index) => ({
+          ...item,
+          itemId: index === lastIndex ? selectedItem.code : item.itemId,
+          itemFraction:
+            index === lastIndex ? selectedItem.fraction : item.itemFraction,
+          itemName: index === lastIndex ? selectedItem.name : item.itemName,
+          itemPrice: index === lastIndex ? selectedItem.price : item.itemPrice,
+        }))
+      );
+    }
   };
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
     0
   );
-        /* moved to SalesOrderUtils.js */
+  /* moved to SalesOrderUtils.js */
   // const addCommas = (number) => {
   //   return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
   // };
-          
+
   useEffect(() => {
-        /* moved to SalesOrderUtils.js */
-  // const getCurrentDate = () => {
-  //   const today = new Date();
-  //   const year = today.getFullYear();
-  //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
-  //   const day = today.getDate().toString().padStart(2, "0");
-  //   return `${year}-${month}-${day}`;
-  // };
+    /* moved to SalesOrderUtils.js */
+    // const getCurrentDate = () => {
+    //   const today = new Date();
+    //   const year = today.getFullYear();
+    //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    //   const day = today.getDate().toString().padStart(2, "0");
+    //   return `${year}-${month}-${day}`;
+    // };
     setCurrentDate(getCurrentDate);
   }, []);
 
@@ -365,11 +384,7 @@ const SalesOrder = () => {
                   />
                 </td>
                 <td hidden>
-                  <input
-                    type='number'
-                    value={item.amount}
-                    readOnly
-                  />
+                  <input type="number" value={item.amount} readOnly />
                 </td>
               </tr>
             ))}
@@ -412,15 +427,15 @@ const SalesOrder = () => {
         <img src={srlogo} alt="Silk Route" onClick={handleShowSilkRoute} />
         <img src={rclogo} alt="Royal Cotton" onClick={handleShowRoyalCotton} />
       </div>
-      {showArix && <ShowItems dept={"ax"} />}
-      {showDuni && <ShowItems dept={"dn"} />}
-      {silkRoute && <ShowItems dept={"sr"} />}
-      {royalCotton && <ShowItems dept={"rc"} />}
+      {showArix && <ShowItems dept={"ax"} onItemClick={handleItemSelect} />}
+      {showDuni && <ShowItems dept={"dn"} onItemClick={handleItemSelect} />}
+      {silkRoute && <ShowItems dept={"sr"} onItemClick={handleItemSelect} />}
+      {royalCotton && <ShowItems dept={"rc"} onItemClick={handleItemSelect} />}
     </div>
   );
 };
 
-      /* moved to SalesOrderUtils.js */
+/* moved to SalesOrderUtils.js */
 // function updateArray(index, key, value) {
 //   return function (prevState) {
 //     const updatedItemsArray = [...prevState];

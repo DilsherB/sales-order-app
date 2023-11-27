@@ -1,11 +1,16 @@
-import React from 'react'
-import items from '../data/items'
+import React from "react";
+import items from "../data/items";
 
-const ShowItems = ({dept}) => {
-  const sortedItems = items.sort((a, b) => a.code.localeCompare(b.code))
+const ShowItems = ({ dept, onItemClick }) => {
+  const sortedItems = items.sort((a, b) => a.code.localeCompare(b.code));
+  const handleItemClick = (item) => {
+    if (onItemClick) {
+      onItemClick(item);
+    }
+  };
   return (
     <div>
-      <table className='table'>
+      <table className="table">
         <thead>
           <tr>
             <th>Code</th>
@@ -15,18 +20,21 @@ const ShowItems = ({dept}) => {
           </tr>
         </thead>
         <tbody>
-          {sortedItems.map(item => item.dept === dept &&
-            <tr key={item.code}>
-              <td>{item.code}</td>
-              <td>{item.name}</td>
-              <td>{item.fraction}</td>
-              <td>{item.price}</td>
-            </tr>
+          {sortedItems.map(
+            (item) =>
+              item.dept === dept && (
+                <tr key={item.code} onClick={() => handleItemClick(item)}>
+                  <td>{item.code}</td>
+                  <td>{item.name}</td>
+                  <td>{item.fraction}</td>
+                  <td>{item.price}</td>
+                </tr>
+              )
           )}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default ShowItems
+export default ShowItems;
