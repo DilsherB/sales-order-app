@@ -108,27 +108,21 @@ const SalesOrder = () => {
   };
 
   const handleItemSelect = (selectedItem) => {
-    const updatedItemsArray = itemsArray.map((item, index) => ({
-      ...item,
-      itemId:
-        selectedItem && index === itemsArray.length - 1
-          ? selectedItem.code
-          : item.itemId,
-      itemFraction:
-        selectedItem && index === itemsArray.length - 1
-          ? selectedItem.fraction
-          : item.itemFraction,
-      itemName:
-        selectedItem && index === itemsArray.length - 1
-          ? selectedItem.name
-          : item.itemName,
-      itemPrice:
-        selectedItem && index === itemsArray.length - 1
-          ? selectedItem.price
-          : item.itemPrice,
-    }));
+    const updatedItemsArray = itemsArray.map((item, index) => {
+      if (selectedItem && index === itemsArray.length - 1) {
+        return {
+          ...item,
+          itemId: selectedItem.code,
+          itemFraction: selectedItem.fraction,
+          itemName: selectedItem.name,
+          itemPrice: selectedItem.price,
+        };
+      }
+      return item;
+    });
+  
     setItemsArray(updatedItemsArray);
-  };  
+  };   
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
