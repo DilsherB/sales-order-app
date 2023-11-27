@@ -7,7 +7,7 @@ import arixlogo from "./images/arixlogo.jpg";
 import dunilogo from "./images/dunilogo.png";
 import srlogo from "./images/srlogo.jpg";
 import rclogo from "./images/rclogo.jpg";
-import { getCurrentDate, updateArray, addCommas } from "./salesOrderUtils";
+import { getCurrentDate, updateArray, addCommas, addRow } from "./salesOrderUtils";
 
 const SalesOrder = () => {
   const initialState = "";
@@ -54,25 +54,6 @@ const SalesOrder = () => {
     });
   };
 
-  const addRow = () => {
-    const newId = itemsArray.length + 1;
-    const newItem = {
-      id: newId,
-      itemId: "",
-      itemName: "",
-      itemFraction: "",
-      qty: "",
-      freeGoods: "",
-      itemPrice: "",
-      yourPrice: "",
-      isPriceDiff: "",
-      discount: "",
-      amount: "",
-    };
-
-    setItemsArray([...itemsArray, newItem]);
-  };
-
   const prevItemsArray = useRef(itemsArray); // useRef to track the previous state of itemsArray
   useEffect(() => {
     const updatedItemsArray = itemsArray.map((item) => ({
@@ -107,9 +88,35 @@ const SalesOrder = () => {
     setItemsArray(updatedItemsArray);
   };
 
-  const handleItemSelect = (selectedItem) => {
-    const updatedItemsArray = itemsArray.map((item, index) => {
-      if (selectedItem && index === itemsArray.length - 1) {
+  // Move addRow function to SalesOrderUtils.js
+// const addRow = (currentItemsArray) => {
+//   const newId = currentItemsArray.length + 1;
+//   const newItem = {
+//     id: newId,
+//     itemId: "",
+//     itemName: "",
+//     itemFraction: "",
+//     qty: "",
+//     freeGoods: "",
+//     itemPrice: "",
+//     yourPrice: "",
+//     isPriceDiff: "",
+//     discount: "",
+//     amount: "",
+//   };
+
+//   return [...currentItemsArray, newItem];
+// };
+
+const handleAddRow = () => {
+  setItemsArray((prevItemsArray) => addRow(prevItemsArray));
+};
+
+// Your component
+const handleItemSelect = (selectedItem) => {
+  setItemsArray((prevItemsArray) => {
+    const updatedItemsArray = prevItemsArray.map((item, index) => {
+      if (index === prevItemsArray.length - 1) {
         return {
           ...item,
           itemId: selectedItem.code,
@@ -117,12 +124,17 @@ const SalesOrder = () => {
           itemName: selectedItem.name,
           itemPrice: selectedItem.price,
         };
+      } else {
+        return item;
       }
-      return item;
     });
+
+    // Use the addRow function to add a new row
+    return addRow(updatedItemsArray);
+  });
+};
+
   
-    setItemsArray(updatedItemsArray);
-  };   
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
@@ -298,7 +310,10 @@ const SalesOrder = () => {
                   <input
                     type="text"
                     id="itemCode"
-                    onBlur={(e) => showCode(e.target.value, index)}
+                    onBlur={(e) => {
+                      showCode(e.target.value, index);
+                      handleAddRow(); // Call addRow when onBlur
+                    }}
                     value={item.itemId}
                     onChange={(e) =>
                       setItemsArray(
@@ -408,10 +423,7 @@ const SalesOrder = () => {
             </tr>
           </tbody>
         </table>
-        <div className="d-flex justify-content-between">
-          <button onClick={addRow} className="btn btn-primary col-5">
-            Add Row
-          </button>
+        <div className="d-flex justify-content-center">
           <button onClick={exportToExcel} className="btn btn-success col-5">
             Export to Excel
           </button>
