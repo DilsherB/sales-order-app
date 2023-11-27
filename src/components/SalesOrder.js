@@ -112,19 +112,20 @@ const SalesOrder = () => {
     (total, item) => total + item.amount,
     0
   );
-
+        /* moved to SalesOrderUtils.js */
   // const addCommas = (number) => {
   //   return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
   // };
-
+          
   useEffect(() => {
-    // const getCurrentDate = () => {
-    //   const today = new Date();
-    //   const year = today.getFullYear();
-    //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
-    //   const day = today.getDate().toString().padStart(2, "0");
-    //   return `${year}-${month}-${day}`;
-    // };
+        /* moved to SalesOrderUtils.js */
+  // const getCurrentDate = () => {
+  //   const today = new Date();
+  //   const year = today.getFullYear();
+  //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
+  //   const day = today.getDate().toString().padStart(2, "0");
+  //   return `${year}-${month}-${day}`;
+  // };
     setCurrentDate(getCurrentDate);
   }, []);
 
@@ -419,6 +420,7 @@ const SalesOrder = () => {
   );
 };
 
+      /* moved to SalesOrderUtils.js */
 // function updateArray(index, key, value) {
 //   return function (prevState) {
 //     const updatedItemsArray = [...prevState];
