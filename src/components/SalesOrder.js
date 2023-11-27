@@ -17,7 +17,6 @@ const SalesOrder = () => {
   const [deliveryDate, setDeliveryDate] = useState("");
   const [po, setPo] = useState("");
   const [rem, setRem] = useState("");
-  const [selectedItem, setSelectedItem] = useState(null);
   const [itemsArray, setItemsArray] = useState([
     {
       id: 1,
@@ -109,23 +108,27 @@ const SalesOrder = () => {
   };
 
   const handleItemSelect = (selectedItem) => {
-    setSelectedItem(selectedItem);
-
-    if (selectedItem) {
-      const lastIndex = itemsArray.length - 1;
-
-      setItemsArray((prevItems) =>
-        prevItems.map((item, index) => ({
-          ...item,
-          itemId: index === lastIndex ? selectedItem.code : item.itemId,
-          itemFraction:
-            index === lastIndex ? selectedItem.fraction : item.itemFraction,
-          itemName: index === lastIndex ? selectedItem.name : item.itemName,
-          itemPrice: index === lastIndex ? selectedItem.price : item.itemPrice,
-        }))
-      );
-    }
-  };
+    const updatedItemsArray = itemsArray.map((item, index) => ({
+      ...item,
+      itemId:
+        selectedItem && index === itemsArray.length - 1
+          ? selectedItem.code
+          : item.itemId,
+      itemFraction:
+        selectedItem && index === itemsArray.length - 1
+          ? selectedItem.fraction
+          : item.itemFraction,
+      itemName:
+        selectedItem && index === itemsArray.length - 1
+          ? selectedItem.name
+          : item.itemName,
+      itemPrice:
+        selectedItem && index === itemsArray.length - 1
+          ? selectedItem.price
+          : item.itemPrice,
+    }));
+    setItemsArray(updatedItemsArray);
+  };  
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
