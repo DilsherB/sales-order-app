@@ -216,11 +216,11 @@ const handleItemSelect = (selectedItem) => {
         </div>
         <div className="d-flex">
           <div className="col-6 oneUnit">
-            <h3>Order Date: &nbsp;</h3>
+            <h3>Order Date : تاريخ الطلب</h3>
             <input type="date" value={currentDate} readOnly />
           </div>
-          <div className="col-5 oneUnit">
-            <h3>Delivery Date: &nbsp;</h3>
+          <div className="col-6 oneUnit">
+            <h3>Del۔ Date : تاريخ التوصيل</h3>
             <input
               type="date"
               value={deliveryDate}
@@ -230,15 +230,31 @@ const handleItemSelect = (selectedItem) => {
         </div>
         <div className="d-flex">
           <div className="col-6 oneUnit">
-            <h3>P.O.: &nbsp;</h3>
+            <h3>Salesman Name : مندوب</h3>
+            <input
+              type="text"
+              onChange={(e) => e.target.value}
+            />
+          </div>
+          <div className="col-6 oneUnit">
+            <h3>SM Code : مندوب کود</h3>
+            <input
+              type="text"
+              onChange={(e) => e.target.value}
+            />
+          </div>
+        </div>
+        <div className="d-flex">
+          <div className="col-6 oneUnit">
+            <h3>P.O. : طلب الشراء</h3>
             <input
               type="text"
               value={po}
               onChange={(e) => setPo(e.target.value)}
             />
           </div>
-          <div className="col-5 oneUnit">
-            <h3>Cust. Code: &nbsp;</h3>
+          <div className="col-6 oneUnit">
+            <h3>Cust. Code : كود العميل</h3>
             <input
               type="text"
               id="customerCode"
@@ -253,7 +269,7 @@ const handleItemSelect = (selectedItem) => {
           Customer Name: <i style={{ color: "blue" }}>{name}</i>
         </h3>
         <h3 className="oneUnit">
-          Remarks:{" "}
+          Remarks : ملاحظات
           <input
             type="text"
             value={rem}
@@ -269,27 +285,27 @@ const handleItemSelect = (selectedItem) => {
             </tr>
             <tr>
               <th>
-                کود <br />
+              كود الصنف <br />
                 ItemCode
               </th>
               <th>
-                حبہ <br />
+              التعبئة <br />
                 Pack
               </th>
               <th>
-                مقدار <br />
+              الكمية <br />
                 Quantity
               </th>
               <th>
-                مجان <br />
+              بضاعة مجانية <br />
                 Free Goodsا
               </th>
               <th hidden>
-                سعر <br />
+              السعر <br />
                 Unit Price
               </th>
               <th>
-                سعر <br />
+              السعر <br />
                 Your Price
               </th>
               <th hidden>
@@ -297,7 +313,7 @@ const handleItemSelect = (selectedItem) => {
                 Price Diff
               </th>
               <th>
-                %دسکاونت <br />
+                %الخصم <br />
                 Disc.{" "}
               </th>
               <th hidden>Amount</th>
@@ -402,15 +418,15 @@ const handleItemSelect = (selectedItem) => {
             ))}
             <tr>
               <th colSpan={2}>
-                کامل <br />
+              المجموع <br />
                 Total
               </th>
               <th colSpan={2}>
-                ویت <br />
+              الضريبة <br />
                 VAT
               </th>
               <th colSpan={2}>
-                نیت <br />
+              المجموع الصافي <br />
                 Net
               </th>
             </tr>
@@ -424,12 +440,12 @@ const handleItemSelect = (selectedItem) => {
           </tbody>
         </table>
         <div className="d-flex justify-content-center">
-          <button onClick={exportToExcel} className="btn btn-success col-5">
-            Export to Excel
+          <button onClick={exportToExcel} className="btn btn-success col-12">
+            Export to Excel تحويل الى اكسل
           </button>
         </div>
       </form>
-      <h1 className="text-center mt-5">Items information</h1>
+      <h1 className="text-center mt-5">Items information وصف الصنف</h1>
       <div className="container-fluid d-flex justify-content-around mb-2">
         <img src={arixlogo} alt="ARIX" onClick={handleShowArix} />
         <img src={dunilogo} alt="DUNI" onClick={handleShowDuni} />
