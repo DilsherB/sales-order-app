@@ -115,9 +115,9 @@ const SalesOrder = () => {
   //   return [...currentItemsArray, newItem];
   // };
 
-  const handleAddRow = () => {
-    setItemsArray((prevItemsArray) => addRow(prevItemsArray));
-  };
+  // const handleAddRow = () => {
+  //   setItemsArray((prevItemsArray) => addRow(prevItemsArray));
+  // };
 
   // Your component
   const handleItemSelect = (selectedItem) => {
@@ -162,6 +162,31 @@ const SalesOrder = () => {
     setCurrentDate(getCurrentDate);
   }, []);
 
+  const resetState = () => {
+    setName(initialState);
+    setCustomerId("");
+    setCurrentDate("");
+    setDeliveryDate("");
+    setPo("");
+    setRem("");
+    setItemsArray([
+      {
+        id: 1,
+        itemId: "",
+        itemName: "",
+        itemFraction: "",
+        qty: "",
+        freeGoods: "",
+        itemPrice: "",
+        yourPrice: "",
+        isPriceDiff: "",
+        discount: "",
+        amount: "",
+      },
+    ]);
+  };
+  
+
   const exportToExcel = () => {
     if (!smName || !customerId) {
       alert("Please enter Salesman Name and Customer Code");
@@ -173,6 +198,8 @@ const SalesOrder = () => {
         "Order Date": currentDate,
         "Delivery Date": deliveryDate,
         "P.O.": po,
+        "Salesman Name": smName,
+        "Salesman Code": smCode,
         "Customer Code": customerId,
         "Customer Name": name,
         Remarks: rem,
@@ -192,6 +219,7 @@ const SalesOrder = () => {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sales Order");
     XLSX.writeFile(wb, "sales_order.xlsx");
+    resetState();
   };
 
   const handleDeleteRow = (index) => {
@@ -291,7 +319,7 @@ const SalesOrder = () => {
             </h3>
             <input
               type="text"
-              // id="customerCode"
+              id="customerCode"
               value={customerId}
               onChange={(e) => setCustomerId(e.target.value)}
               onBlur={showName}
@@ -374,7 +402,7 @@ const SalesOrder = () => {
                     id="itemCode"
                     onBlur={(e) => {
                       showCode(e.target.value, index);
-                      handleAddRow(); // Call addRow when onBlur
+                      // handleAddRow(); // Call addRow onBlur
                     }}
                     value={item.itemId}
                     onChange={(e) =>
