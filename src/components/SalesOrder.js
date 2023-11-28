@@ -22,6 +22,8 @@ const SalesOrder = () => {
   const [deliveryDate, setDeliveryDate] = useState("");
   const [po, setPo] = useState("");
   const [rem, setRem] = useState("");
+  const [smName, setSmName] = useState("");
+  const [smCode, setSmCode] = useState("");
   const [itemsArray, setItemsArray] = useState([
     {
       id: 1,
@@ -161,9 +163,7 @@ const SalesOrder = () => {
   }, []);
 
   const exportToExcel = () => {
-    const smName = document.querySelector("#smName").value;
-    const custCode = document.querySelector("#customerCode").value;
-    if (!smName || !custCode) {
+    if (!smName || !customerId) {
       alert("Please enter Salesman Name and Customer Code");
       return;
     }
@@ -257,8 +257,9 @@ const SalesOrder = () => {
             </h3>
             <input
               type="text"
-              onChange={(e) => e.target.value}
-              id="smName"
+              onChange={(e) => setSmName(e.target.value)}
+              // id="smName"
+              value={smName}
               required
             />
           </div>
@@ -266,7 +267,11 @@ const SalesOrder = () => {
             <h3 className="flexBtw">
               <div>SM Code</div> : <div>مندوب کود</div>
             </h3>
-            <input type="text" onChange={(e) => e.target.value} />
+            <input
+              type="text"
+              onChange={(e) => setSmCode(e.target.value)}
+              value={smCode}
+            />
           </div>
         </div>
         <div className="d-flex">
@@ -286,7 +291,7 @@ const SalesOrder = () => {
             </h3>
             <input
               type="text"
-              id="customerCode"
+              // id="customerCode"
               value={customerId}
               onChange={(e) => setCustomerId(e.target.value)}
               onBlur={showName}
