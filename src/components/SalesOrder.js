@@ -161,6 +161,13 @@ const SalesOrder = () => {
   }, []);
 
   const exportToExcel = () => {
+    const smName = document.querySelector("#smName").value;
+    const custCode = document.querySelector("#customerCode").value;
+    if (!smName || !custCode) {
+      alert("Please enter Salesman Name and Customer Code");
+      return;
+    }
+
     const ws = XLSX.utils.json_to_sheet([
       {
         "Order Date": currentDate,
@@ -240,7 +247,7 @@ const SalesOrder = () => {
             <h3 className="flexBtw">
               <div>Salesman Name</div> : <div>مندوب</div>
             </h3>
-            <input type="text" onChange={(e) => e.target.value} />
+            <input type="text" onChange={(e) => e.target.value} id="smName" required />
           </div>
           <div className="col-6 oneUnit">
             <h3 className="flexBtw">
@@ -278,7 +285,9 @@ const SalesOrder = () => {
           Customer Name: <i style={{ color: "blue" }}>{name}</i>
         </h3>
         <div className="oneUnit">
-          <h3 className="flexBtw"><div>Remarks</div> : <div>ملاحظات</div></h3>
+          <h3 className="flexBtw">
+            <div>Remarks</div> : <div>ملاحظات</div>
+          </h3>
           <input
             type="text"
             value={rem}
