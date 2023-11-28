@@ -7,7 +7,12 @@ import arixlogo from "./images/arixlogo.jpg";
 import dunilogo from "./images/dunilogo.png";
 import srlogo from "./images/srlogo.jpg";
 import rclogo from "./images/rclogo.jpg";
-import { getCurrentDate, updateArray, addCommas, addRow } from "./salesOrderUtils";
+import {
+  getCurrentDate,
+  updateArray,
+  addCommas,
+  addRow,
+} from "./salesOrderUtils";
 
 const SalesOrder = () => {
   const initialState = "";
@@ -89,52 +94,50 @@ const SalesOrder = () => {
   };
 
   // Move addRow function to SalesOrderUtils.js
-// const addRow = (currentItemsArray) => {
-//   const newId = currentItemsArray.length + 1;
-//   const newItem = {
-//     id: newId,
-//     itemId: "",
-//     itemName: "",
-//     itemFraction: "",
-//     qty: "",
-//     freeGoods: "",
-//     itemPrice: "",
-//     yourPrice: "",
-//     isPriceDiff: "",
-//     discount: "",
-//     amount: "",
-//   };
+  // const addRow = (currentItemsArray) => {
+  //   const newId = currentItemsArray.length + 1;
+  //   const newItem = {
+  //     id: newId,
+  //     itemId: "",
+  //     itemName: "",
+  //     itemFraction: "",
+  //     qty: "",
+  //     freeGoods: "",
+  //     itemPrice: "",
+  //     yourPrice: "",
+  //     isPriceDiff: "",
+  //     discount: "",
+  //     amount: "",
+  //   };
 
-//   return [...currentItemsArray, newItem];
-// };
+  //   return [...currentItemsArray, newItem];
+  // };
 
-const handleAddRow = () => {
-  setItemsArray((prevItemsArray) => addRow(prevItemsArray));
-};
+  const handleAddRow = () => {
+    setItemsArray((prevItemsArray) => addRow(prevItemsArray));
+  };
 
-// Your component
-const handleItemSelect = (selectedItem) => {
-  setItemsArray((prevItemsArray) => {
-    const updatedItemsArray = prevItemsArray.map((item, index) => {
-      if (index === prevItemsArray.length - 1) {
-        return {
-          ...item,
-          itemId: selectedItem.code,
-          itemFraction: selectedItem.fraction,
-          itemName: selectedItem.name,
-          itemPrice: selectedItem.price,
-        };
-      } else {
-        return item;
-      }
+  // Your component
+  const handleItemSelect = (selectedItem) => {
+    setItemsArray((prevItemsArray) => {
+      const updatedItemsArray = prevItemsArray.map((item, index) => {
+        if (index === prevItemsArray.length - 1) {
+          return {
+            ...item,
+            itemId: selectedItem.code,
+            itemFraction: selectedItem.fraction,
+            itemName: selectedItem.name,
+            itemPrice: selectedItem.price,
+          };
+        } else {
+          return item;
+        }
+      });
+
+      // Use the addRow function to add a new row
+      return addRow(updatedItemsArray);
     });
-
-    // Use the addRow function to add a new row
-    return addRow(updatedItemsArray);
-  });
-};
-
-  
+  };
 
   const totalAmount = itemsArray.reduce(
     (total, item) => total + item.amount,
@@ -216,11 +219,15 @@ const handleItemSelect = (selectedItem) => {
         </div>
         <div className="d-flex">
           <div className="col-6 oneUnit">
-            <h3>Order Date : تاريخ الطلب</h3>
+            <h3 className="flexBtw">
+              <div>Order Date</div> : <div>تاريخ الطلب</div>
+            </h3>
             <input type="date" value={currentDate} readOnly />
           </div>
           <div className="col-6 oneUnit">
-            <h3>Del۔ Date : تاريخ التوصيل</h3>
+            <h3 className="flexBtw">
+              <div>Del۔ Date</div> : <div>تاريخ التوصيل</div>
+            </h3>
             <input
               type="date"
               value={deliveryDate}
@@ -230,23 +237,23 @@ const handleItemSelect = (selectedItem) => {
         </div>
         <div className="d-flex">
           <div className="col-6 oneUnit">
-            <h3>Salesman Name : مندوب</h3>
-            <input
-              type="text"
-              onChange={(e) => e.target.value}
-            />
+            <h3 className="flexBtw">
+              <div>Salesman Name</div> : <div>مندوب</div>
+            </h3>
+            <input type="text" onChange={(e) => e.target.value} />
           </div>
           <div className="col-6 oneUnit">
-            <h3>SM Code : مندوب کود</h3>
-            <input
-              type="text"
-              onChange={(e) => e.target.value}
-            />
+            <h3 className="flexBtw">
+              <div>SM Code</div> : <div>مندوب کود</div>
+            </h3>
+            <input type="text" onChange={(e) => e.target.value} />
           </div>
         </div>
         <div className="d-flex">
           <div className="col-6 oneUnit">
-            <h3>P.O. : طلب الشراء</h3>
+            <h3 className="flexBtw">
+              <div>P.O.</div> : <div>طلب الشراء</div>
+            </h3>
             <input
               type="text"
               value={po}
@@ -254,7 +261,9 @@ const handleItemSelect = (selectedItem) => {
             />
           </div>
           <div className="col-6 oneUnit">
-            <h3>Cust. Code : كود العميل</h3>
+            <h3 className="flexBtw">
+              <div>Cust. Code</div> : <div>كود العميل</div>
+            </h3>
             <input
               type="text"
               id="customerCode"
@@ -268,14 +277,14 @@ const handleItemSelect = (selectedItem) => {
         <h3 style={{ padding: "1rem" }}>
           Customer Name: <i style={{ color: "blue" }}>{name}</i>
         </h3>
-        <h3 className="oneUnit">
-          Remarks : ملاحظات
+        <div className="oneUnit">
+          <h3 className="flexBtw"><div>Remarks</div> : <div>ملاحظات</div></h3>
           <input
             type="text"
             value={rem}
             onChange={(e) => setRem(e.target.value)}
           />
-        </h3>
+        </div>
         <table className="table table-info table-striped">
           <thead>
             <tr>
@@ -285,27 +294,27 @@ const handleItemSelect = (selectedItem) => {
             </tr>
             <tr>
               <th>
-              كود الصنف <br />
+                كود الصنف <br />
                 ItemCode
               </th>
               <th>
-              التعبئة <br />
+                التعبئة <br />
                 Pack
               </th>
               <th>
-              الكمية <br />
+                الكمية <br />
                 Quantity
               </th>
               <th>
-              بضاعة مجانية <br />
+                بضاعة مجانية <br />
                 Free Goodsا
               </th>
               <th hidden>
-              السعر <br />
+                السعر <br />
                 Unit Price
               </th>
               <th>
-              السعر <br />
+                السعر <br />
                 Your Price
               </th>
               <th hidden>
@@ -418,15 +427,15 @@ const handleItemSelect = (selectedItem) => {
             ))}
             <tr>
               <th colSpan={2}>
-              المجموع <br />
+                المجموع <br />
                 Total
               </th>
               <th colSpan={2}>
-              الضريبة <br />
+                الضريبة <br />
                 VAT
               </th>
               <th colSpan={2}>
-              المجموع الصافي <br />
+                المجموع الصافي <br />
                 Net
               </th>
             </tr>
