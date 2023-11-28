@@ -255,7 +255,12 @@ const SalesOrder = () => {
             <h3 className="flexBtw">
               <div>Salesman Name</div> : <div>مندوب</div>
             </h3>
-            <input type="text" onChange={(e) => e.target.value} id="smName" required />
+            <input
+              type="text"
+              onChange={(e) => e.target.value}
+              id="smName"
+              required
+            />
           </div>
           <div className="col-6 oneUnit">
             <h3 className="flexBtw">
@@ -341,6 +346,16 @@ const SalesOrder = () => {
               <th>
                 %الخصم <br />
                 Disc.{" "}
+              </th>
+              <th
+                style={{
+                  writingMode: "vertical-rl",
+                  textOrientation: "mixed",
+                  maxWidth: "max-content",
+                }}
+              >
+                خذف لائن <br />
+                Delete Row
               </th>
               <th hidden>Amount</th>
             </tr>
@@ -436,11 +451,13 @@ const SalesOrder = () => {
                       )
                     }
                   />
-                  <p style={{cursor: "pointer", padding: "0 0 0 5px"}}
+                </td>
+                <td style={{ maxWidth: "max-content" }}>
+                  <p
+                    className="btn btn-danger"
+                    style={{ margin: "1rem 0 0 0" }}
                     onClick={() => handleDeleteRow(index)}
-                  >
-                    -
-                  </p>
+                  ></p>
                 </td>
                 <td hidden>
                   <input type="number" value={item.amount} readOnly />
@@ -456,7 +473,7 @@ const SalesOrder = () => {
                 الضريبة <br />
                 VAT
               </th>
-              <th colSpan={2}>
+              <th colSpan={3}>
                 المجموع الصافي <br />
                 Net
               </th>
@@ -464,7 +481,7 @@ const SalesOrder = () => {
             <tr>
               <td colSpan={2}>{addCommas(parseFloat(totalAmount))}</td>
               <td colSpan={2}>{addCommas(totalAmount * 0.15)}</td>
-              <td colSpan={2}>
+              <td colSpan={3}>
                 {addCommas(parseFloat(totalAmount + totalAmount * 0.15))}
               </td>
             </tr>
