@@ -69,7 +69,6 @@ const SalesOrder = () => {
         item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100),
     }));
 
-    // Check if there are any changes in the itemsArray before updating the state
     if (
       updatedItemsArray.length !== prevItemsArray.current.length ||
       updatedItemsArray.some(
@@ -95,31 +94,6 @@ const SalesOrder = () => {
     setItemsArray(updatedItemsArray);
   };
 
-  // Move addRow function to SalesOrderUtils.js
-  // const addRow = (currentItemsArray) => {
-  //   const newId = currentItemsArray.length + 1;
-  //   const newItem = {
-  //     id: newId,
-  //     itemId: "",
-  //     itemName: "",
-  //     itemFraction: "",
-  //     qty: "",
-  //     freeGoods: "",
-  //     itemPrice: "",
-  //     yourPrice: "",
-  //     isPriceDiff: "",
-  //     discount: "",
-  //     amount: "",
-  //   };
-
-  //   return [...currentItemsArray, newItem];
-  // };
-
-  // const handleAddRow = () => {
-  //   setItemsArray((prevItemsArray) => addRow(prevItemsArray));
-  // };
-
-  // Your component
   const handleItemSelect = (selectedItem) => {
     setItemsArray((prevItemsArray) => {
       const updatedItemsArray = prevItemsArray.map((item, index) => {
@@ -135,8 +109,6 @@ const SalesOrder = () => {
           return item;
         }
       });
-
-      // Use the addRow function to add a new row
       return addRow(updatedItemsArray);
     });
   };
@@ -145,20 +117,8 @@ const SalesOrder = () => {
     (total, item) => total + item.amount,
     0
   );
-  /* moved to SalesOrderUtils.js */
-  // const addCommas = (number) => {
-  //   return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
-  // };
 
   useEffect(() => {
-    /* moved to SalesOrderUtils.js */
-    // const getCurrentDate = () => {
-    //   const today = new Date();
-    //   const year = today.getFullYear();
-    //   const month = (today.getMonth() + 1).toString().padStart(2, "0");
-    //   const day = today.getDate().toString().padStart(2, "0");
-    //   return `${year}-${month}-${day}`;
-    // };
     setCurrentDate(getCurrentDate);
   }, []);
 
@@ -185,7 +145,6 @@ const SalesOrder = () => {
       },
     ]);
   };
-  
 
   const exportToExcel = () => {
     if (!smName || !customerId) {
@@ -236,19 +195,15 @@ const SalesOrder = () => {
     setActiveComponent((prev) => (prev === component ? null : component));
   };
 
-  // Arix
   const showArix = activeComponent === "arix";
   const handleShowArix = () => handleShowComponent("arix");
 
-  // Duni
   const showDuni = activeComponent === "duni";
   const handleShowDuni = () => handleShowComponent("duni");
 
-  // SilkRoute
   const silkRoute = activeComponent === "silkRoute";
   const handleShowSilkRoute = () => handleShowComponent("silkRoute");
 
-  // RoyalCotton
   const royalCotton = activeComponent === "royalCotton";
   const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
 
@@ -286,7 +241,6 @@ const SalesOrder = () => {
             <input
               type="text"
               onChange={(e) => setSmName(e.target.value)}
-              // id="smName"
               value={smName}
               required
             />
@@ -400,10 +354,7 @@ const SalesOrder = () => {
                   <input
                     type="text"
                     id="itemCode"
-                    onBlur={(e) => {
-                      showCode(e.target.value, index);
-                      // handleAddRow(); // Call addRow onBlur
-                    }}
+                    onBlur={(e) => showCode(e.target.value, index)}
                     value={item.itemId}
                     onChange={(e) =>
                       setItemsArray(
@@ -540,14 +491,5 @@ const SalesOrder = () => {
     </div>
   );
 };
-
-/* moved to SalesOrderUtils.js */
-// function updateArray(index, key, value) {
-//   return function (prevState) {
-//     const updatedItemsArray = [...prevState];
-//     updatedItemsArray[index][key] = value;
-//     return updatedItemsArray;
-//   };
-// }
 
 export default SalesOrder;
