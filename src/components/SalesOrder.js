@@ -194,6 +194,14 @@ const SalesOrder = () => {
     XLSX.writeFile(wb, "sales_order.xlsx");
   };
 
+  const handleDeleteRow = (index) => {
+    setItemsArray((prevItemsArray) => {
+      const updatedItemsArray = [...prevItemsArray];
+      updatedItemsArray.splice(index, 1);
+      return updatedItemsArray;
+    });
+  };
+
   const [activeComponent, setActiveComponent] = useState(null);
 
   const handleShowComponent = (component) => {
@@ -418,7 +426,7 @@ const SalesOrder = () => {
                     readOnly
                   />
                 </td>
-                <td>
+                <td className="d-flex w-100 align-items-center justify-content-between">
                   <input
                     type="number"
                     value={item.discount}
@@ -428,6 +436,11 @@ const SalesOrder = () => {
                       )
                     }
                   />
+                  <p style={{cursor: "pointer", padding: "0 0 0 5px"}}
+                    onClick={() => handleDeleteRow(index)}
+                  >
+                    -
+                  </p>
                 </td>
                 <td hidden>
                   <input type="number" value={item.amount} readOnly />
