@@ -65,8 +65,10 @@ const SalesOrder = () => {
   useEffect(() => {
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
-      amount:
-        item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100),
+
+        amount: item.yourPrice
+          ? item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100)
+          : item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100)
     }));
 
     if (
