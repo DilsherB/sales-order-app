@@ -41,7 +41,7 @@ const SalesOrder = () => {
   ]);
 
   const handleAddRow = () => {
-    setItemsArray(addRow(itemsArray));
+    setItemsArray((prevItemsArray) => addRow(prevItemsArray));
   }
 
   const showCode = (itemCode, index) => {
@@ -195,7 +195,7 @@ const SalesOrder = () => {
       updatedItemsArray.splice(index, 1);
       return updatedItemsArray;
     });
-  };
+  };  
 
   const [activeComponent, setActiveComponent] = useState(null);
 
