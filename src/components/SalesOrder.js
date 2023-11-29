@@ -40,6 +40,10 @@ const SalesOrder = () => {
     },
   ]);
 
+  const handleAddRow = () => {
+    setItemsArray(addRow(itemsArray));
+  }
+
   const showCode = (itemCode, index) => {
     items.forEach((item) => {
       if (item.code.toUpperCase() === itemCode.toUpperCase()) {
@@ -129,6 +133,8 @@ const SalesOrder = () => {
     setCustomerId("");
     setCurrentDate("");
     setDeliveryDate("");
+    setSmName("");
+    setSmCode("");
     setPo("");
     setRem("");
     setItemsArray([
@@ -473,9 +479,12 @@ const SalesOrder = () => {
             </tr>
           </tbody>
         </table>
-        <div className="d-flex justify-content-center">
-          <button onClick={exportToExcel} className="btn btn-success col-12">
-            Export to Excel تحويل الى اكسل
+        <div className="d-flex justify-content-between">
+          <button onClick={handleAddRow} className="btn btn-success col-5">
+          اضافہ لائن <br />Add Row
+          </button>
+          <button onClick={exportToExcel} className="btn btn-success col-5">
+          تحويل الى اكسل <br /> Export to Excel
           </button>
         </div>
       </form>
