@@ -502,7 +502,8 @@ const SalesOrder = () => {
       <div
         className="d-flex justify-content-center border p-3 bg-primary text-white"
         style={{ position: "fixed", bottom: "0", width: "95vw", borderRadius: "5px", fontSize: "2rem" }}
-        >Developed with &#10084; by Dilsher Balouch
+        >
+          Developed with &#10084; by Dilsher Balouch &copy;
       </div>
     </div>
   );
