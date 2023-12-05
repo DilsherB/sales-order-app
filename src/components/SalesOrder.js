@@ -165,8 +165,10 @@ const SalesOrder = () => {
   };
 
   const itemNotFound = (itemId) => {
-    return !items.some((item) => item.code.toUpperCase() === itemId.toUpperCase());
-  };  
+    return !items.some(
+      (item) => item.code.toUpperCase() === itemId.toUpperCase()
+    );
+  };
 
   const exportToExcel = () => {
     if (!smName || !customerId) {
@@ -174,7 +176,13 @@ const SalesOrder = () => {
       return;
     }
 
-    if (itemsArray.some((item) => itemNotFound(item.itemId))) {
+    const lastRow = itemsArray[itemsArray.length - 1];
+    if (
+      itemsArray
+        .slice(0, -1)
+        .some((item) => itemNotFound(item.itemId) || !item.itemId) &&
+      !lastRow.itemId
+    ) {
       alert("Please enter valid Item Code(s) circled in Red.");
       return;
     }
@@ -394,7 +402,7 @@ const SalesOrder = () => {
                     }
                     className={itemNotFound(item.itemId) ? "error-border" : ""}
                     required
-                    />
+                  />
                 </td>
                 <td>
                   <input
