@@ -387,11 +387,9 @@ const SalesOrder = () => {
                         updateArray(index, "itemId", e.target.value)
                       )
                     }
+                    className={itemNotFound(item.itemId) ? "error-border" : ""}
                     required
-                  />
-                  {itemNotFound(item.itemId) && (
-                    <span style={{ color: "red" }}>Item not found!</span>
-                  )}
+                    />
                 </td>
                 <td>
                   <input
