@@ -7,6 +7,7 @@ import arixlogo from "./images/arixlogo.jpg";
 import dunilogo from "./images/dunilogo.png";
 import srlogo from "./images/srlogo.jpg";
 import rclogo from "./images/rclogo.jpg";
+import salesmen from "../data/salesmen";
 import {
   getCurrentDate,
   updateArray,
@@ -42,7 +43,7 @@ const SalesOrder = () => {
 
   const handleAddRow = () => {
     setItemsArray((prevItemsArray) => addRow(prevItemsArray));
-  }
+  };
 
   const showCode = (itemCode, index) => {
     items.forEach((item) => {
@@ -65,14 +66,23 @@ const SalesOrder = () => {
     });
   };
 
+  const showSmName = () => {
+    let salesmanCode = document.querySelector("#smCode").value;
+    salesmen.forEach((salesman) => {
+      if (salesman.code.toUpperCase() === salesmanCode.toUpperCase()) {
+        setSmName(salesman.name);
+      }
+    });
+  };
+
   const prevItemsArray = useRef(itemsArray); // useRef to track the previous state of itemsArray
   useEffect(() => {
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
 
-        amount: item.yourPrice
-          ? item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100)
-          : item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100)
+      amount: item.yourPrice
+        ? item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100)
+        : item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100),
     }));
 
     if (
@@ -195,7 +205,7 @@ const SalesOrder = () => {
       updatedItemsArray.splice(index, 1);
       return updatedItemsArray;
     });
-  };  
+  };
 
   const [activeComponent, setActiveComponent] = useState(null);
 
@@ -228,7 +238,7 @@ const SalesOrder = () => {
             <h3 className="flexBtw">
               <div>Order Date</div> : <div>تاريخ الطلب</div>
             </h3>
-            <input type="date" value={currentDate} readOnly />
+            <input type="date" value={currentDate} readOnly disabled />
           </div>
           <div className="col-6 oneUnit">
             <h3 className="flexBtw">
@@ -244,23 +254,27 @@ const SalesOrder = () => {
         <div className="d-flex">
           <div className="col-6 oneUnit">
             <h3 className="flexBtw">
-              <div>Salesman Name</div> : <div>مندوب</div>
+              <div>SM Code</div> : <div>مندوب کود</div>
             </h3>
             <input
               type="text"
-              onChange={(e) => setSmName(e.target.value)}
-              value={smName}
+              id="smCode"
+              onChange={(e) => setSmCode(e.target.value)}
+              value={smCode}
+              onBlur={showSmName}
               required
             />
           </div>
           <div className="col-6 oneUnit">
             <h3 className="flexBtw">
-              <div>SM Code</div> : <div>مندوب کود</div>
+              <div>Salesman Name</div> : <div>مندوب</div>
             </h3>
             <input
               type="text"
-              onChange={(e) => setSmCode(e.target.value)}
-              value={smCode}
+              // onChange={(e) => setSmName(e.target.value)}
+              value={smName}
+              readOnly
+              disabled
             />
           </div>
         </div>
@@ -378,6 +392,7 @@ const SalesOrder = () => {
                     style={{ color: "blue" }}
                     value={item.itemFraction}
                     readOnly
+                    disabled
                   />
                 </td>
                 <td>
@@ -481,10 +496,11 @@ const SalesOrder = () => {
         </table>
         <div className="d-flex justify-content-between">
           <button onClick={handleAddRow} className="btn btn-success col-5">
-          اضافہ لائن <br />Add Row
+            اضافہ لائن <br />
+            Add Row
           </button>
           <button onClick={exportToExcel} className="btn btn-success col-5">
-          تحويل الى اكسل <br /> Export to Excel
+            تحويل الى اكسل <br /> Export to Excel
           </button>
         </div>
       </form>
@@ -502,8 +518,8 @@ const SalesOrder = () => {
       <div
         className="d-flex justify-content-center border p-3 bg-primary text-white"
         style={{ width: "93vw", borderRadius: "5px", fontSize: "2rem" }}
-        >
-          Developed with &#10084; by Dilsher Balouch &copy;
+      >
+        Developed with &#10084; by Dilsher Balouch &copy;
       </div>
     </div>
   );
