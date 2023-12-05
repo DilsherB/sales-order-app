@@ -170,7 +170,12 @@ const SalesOrder = () => {
 
   const exportToExcel = () => {
     if (!smName || !customerId) {
-      alert("Please enter Salesman Name and Customer Code");
+      alert("Please enter Salesman Code and Customer Code");
+      return;
+    }
+
+    if (itemsArray.some((item) => itemNotFound(item.itemId))) {
+      alert("Please enter valid Item Code(s) circled in Red.");
       return;
     }
 
