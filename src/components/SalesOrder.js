@@ -164,6 +164,10 @@ const SalesOrder = () => {
     ]);
   };
 
+  const itemNotFound = (itemId) => {
+    return !items.some((item) => item.code.toUpperCase() === itemId.toUpperCase());
+  };  
+
   const exportToExcel = () => {
     if (!smName || !customerId) {
       alert("Please enter Salesman Name and Customer Code");
@@ -385,6 +389,9 @@ const SalesOrder = () => {
                     }
                     required
                   />
+                  {itemNotFound(item.itemId) && (
+                    <span style={{ color: "red" }}>Item not found!</span>
+                  )}
                 </td>
                 <td>
                   <input
