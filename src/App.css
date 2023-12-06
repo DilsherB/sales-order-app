@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 
-.bgContainer {
+.bgContainer { /* This container is in index.js */
   position: relative;
   z-index: 1; /* Ensure content is above the background */
   padding: 20px; /* Add some padding to your content */
