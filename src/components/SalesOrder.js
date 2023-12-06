@@ -172,7 +172,8 @@ const SalesOrder = () => {
 
   const exportToExcel = () => {
     if (!smName || !customerId) {
-      alert("Please enter Salesman Code and Customer Code");
+      document.getElementById("message").innerHTML =
+        "Please enter Salesman Code and Customer Code";
       return;
     }
 
@@ -183,7 +184,8 @@ const SalesOrder = () => {
         .some((item) => itemNotFound(item.itemId) || !item.itemId) &&
       !lastRow.itemId
     ) {
-      alert("Please enter valid Item Code(s) circled in Red.");
+      document.getElementById("message").innerHTML =
+      "Please enter valid Item Code(s) circled in Red.";
       return;
     }
 
@@ -332,6 +334,25 @@ const SalesOrder = () => {
             value={rem}
             onChange={(e) => setRem(e.target.value)}
           />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          >
+          <p
+            id="message"
+            style={{
+              color: "red",
+              width: "max-content",
+              fontSize: "2rem",
+              backgroundColor: "aqua",
+              padding: "0.1rem 2rem",
+              borderRadius: "0.5rem"
+            }}
+          ></p>
         </div>
         <table className="table table-info table-striped">
           <thead>
