@@ -172,8 +172,12 @@ const SalesOrder = () => {
 
   const exportToExcel = () => {
     if (!smName || !customerId) {
-      document.getElementById("message").innerHTML =
+      const ele = document.getElementById("message");
+      ele.innerHTML =
         "Please enter Salesman Code and Customer Code";
+      setTimeout(() => {
+        ele.innerHTML = "";
+      }, 5000)
       return;
     }
 
@@ -184,8 +188,11 @@ const SalesOrder = () => {
         .some((item) => itemNotFound(item.itemId) || !item.itemId) &&
       !lastRow.itemId
     ) {
-      document.getElementById("message").innerHTML =
-      "Please enter valid Item Code(s) circled in Red.";
+      const ele = document.getElementById("message");
+      ele.innerHTML ="Please enter valid Item Code(s) circled in Red.";
+      setTimeout(() => {
+        ele.innerHTML = ""
+      }, 5000);
       return;
     }
 
