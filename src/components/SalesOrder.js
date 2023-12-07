@@ -546,7 +546,7 @@ const SalesOrder = () => {
             Add Row
           </button>
           <button onClick={exportToExcel} className="btn btn-success col-5">
-            تحويل الى اكسل <br /> Export to Excel
+            تحويل الى اكسل Excel
           </button>
         </div>
       </form>
@@ -563,7 +563,7 @@ const SalesOrder = () => {
       {royalCotton && <ShowItems dept={"rc"} onItemClick={handleItemSelect} />}
       <div
         className="d-flex justify-content-center border p-3 bg-primary text-white"
-        style={{ width: "93vw", borderRadius: "5px", fontSize: "2rem" }}
+        style={{ borderRadius: "5px", fontSize: "2rem" }}
       >
         Developed with &#10084; by Dilsher Balouch &copy;
       </div>
