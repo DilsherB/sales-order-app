@@ -173,11 +173,10 @@ const SalesOrder = () => {
   const exportToExcel = () => {
     if (!smName || !customerId) {
       const ele = document.getElementById("message");
-      ele.innerHTML =
-        "Please enter Salesman Code and Customer Code";
+      ele.innerHTML = "Please enter Salesman Code and Customer Code";
       setTimeout(() => {
         ele.innerHTML = "";
-      }, 5000)
+      }, 5000);
       return;
     }
 
@@ -189,9 +188,9 @@ const SalesOrder = () => {
       !lastRow.itemId
     ) {
       const ele = document.getElementById("message");
-      ele.innerHTML ="Please enter valid Item Code(s) circled in Red.";
+      ele.innerHTML = "Please enter valid Item Code(s) circled in Red.";
       setTimeout(() => {
-        ele.innerHTML = ""
+        ele.innerHTML = "";
       }, 5000);
       return;
     }
@@ -348,7 +347,7 @@ const SalesOrder = () => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          >
+        >
           <p
             id="message"
             style={{
@@ -357,47 +356,47 @@ const SalesOrder = () => {
               fontSize: "2rem",
               backgroundColor: "aqua",
               padding: "0.1rem 2rem",
-              borderRadius: "0.5rem"
+              borderRadius: "0.5rem",
             }}
           ></p>
         </div>
         <table className="table table-info table-striped">
           <thead>
             <tr>
-              <th colSpan={6}>
+              <th colSpan={6} style={{ padding: "0", margin: "0" }}>
                 <h2>Item Data</h2>
               </th>
             </tr>
             <tr>
-              <th>
+              <th style={{ padding: "0", margin: "0" }}>
                 كود الصنف <br />
                 ItemCode
               </th>
-              <th>
+              <th style={{ padding: "0", margin: "0" }}>
                 التعبئة <br />
                 Pack
               </th>
-              <th>
+              <th style={{ padding: "0", margin: "0" }}>
                 الكمية <br />
                 Quantity
               </th>
-              <th>
+              <th style={{ padding: "0", margin: "0" }}>
                 بضاعة مجانية <br />
                 Free Goodsا
               </th>
-              <th hidden>
+              <th hidden style={{ padding: "0", margin: "0" }}>
                 السعر <br />
                 Unit Price
               </th>
-              <th>
+              <th style={{ padding: "0", margin: "0" }}>
                 السعر <br />
                 Your Price
               </th>
-              <th hidden>
+              <th hidden style={{ padding: "0", margin: "0" }}>
                 * <br />
                 Price Diff
               </th>
-              <th>
+              <th style={{ padding: "0", margin: "0" }}>
                 %الخصم <br />
                 Disc.{" "}
               </th>
@@ -406,6 +405,8 @@ const SalesOrder = () => {
                   writingMode: "vertical-rl",
                   textOrientation: "mixed",
                   maxWidth: "max-content",
+                  padding: "0",
+                  margin: "0",
                 }}
               >
                 خذف لائن <br />
@@ -417,8 +418,9 @@ const SalesOrder = () => {
           <tbody>
             {itemsArray.map((item, index) => (
               <tr key={item.id}>
-                <td>
+                <td style={{ padding: "0", margin: "0" }}>
                   <input
+                    style={{ width: "fit-content" }}
                     type="text"
                     id="itemCode"
                     onBlur={(e) => showCode(e.target.value, index)}
@@ -432,7 +434,7 @@ const SalesOrder = () => {
                     required
                   />
                 </td>
-                <td>
+                <td style={{ padding: "0", margin: "0" }}>
                   <input
                     type="text"
                     style={{ color: "blue" }}
@@ -441,7 +443,7 @@ const SalesOrder = () => {
                     disabled
                   />
                 </td>
-                <td>
+                <td style={{ padding: "0", margin: "0" }}>
                   <input
                     type="number"
                     value={item.qty}
@@ -451,7 +453,7 @@ const SalesOrder = () => {
                     required
                   />
                 </td>
-                <td>
+                <td style={{ padding: "0", margin: "0" }}>
                   <input
                     type="number"
                     value={item.freeGoods}
@@ -462,7 +464,7 @@ const SalesOrder = () => {
                     }
                   />
                 </td>
-                <td hidden>
+                <td hidden style={{ padding: "0", margin: "0" }}>
                   <input
                     type="number"
                     id="itemPrice"
@@ -474,7 +476,7 @@ const SalesOrder = () => {
                     }
                   />
                 </td>
-                <td>
+                <td style={{ padding: "0", margin: "0" }}>
                   <input
                     type="number"
                     value={item.yourPrice}
@@ -486,7 +488,7 @@ const SalesOrder = () => {
                     onBlur={priceDiff}
                   />
                 </td>
-                <td hidden>
+                <td hidden style={{ padding: "0", margin: "0" }}>
                   <input
                     type="text"
                     style={{ color: "blue" }}
@@ -494,7 +496,10 @@ const SalesOrder = () => {
                     readOnly
                   />
                 </td>
-                <td className="d-flex w-100 align-items-center justify-content-between">
+                <td
+                  className="d-flex w-100 align-items-center justify-content-between"
+                  style={{ padding: "0", margin: "0" }}
+                >
                   <input
                     type="number"
                     value={item.discount}
@@ -505,7 +510,9 @@ const SalesOrder = () => {
                     }
                   />
                 </td>
-                <td style={{ maxWidth: "max-content" }}>
+                <td
+                  style={{ maxWidth: "max-content", padding: "0", margin: "0" }}
+                >
                   <p
                     className="btn btn-danger"
                     style={{ margin: "1rem 0 0 0" }}
