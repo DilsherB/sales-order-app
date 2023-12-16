@@ -59,18 +59,12 @@ input {
 }
 @media (max-width: 768px) {
   input {
-    /* width: 100%; */
     padding: auto 0;
   }
   
   input:focus {
     font-size: 200%;
   }
-  /* .table {
-    font-size: 150%;
-    padding: 0;
-    margin: 0;
-  } */
 }
 
 input::-webkit-outer-spin-button,
