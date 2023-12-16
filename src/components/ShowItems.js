@@ -16,18 +16,18 @@ const ShowItems = ({ dept, onItemClick }) => {
             <th>Code</th>
             <th>Name</th>
             <th>Fraction</th>
-            <th>Price</th>
+            {/* <th>Price</th> */}
           </tr>
         </thead>
         <tbody>
           {sortedItems.map(
             (item) =>
-              item.dept === dept && (
+              item.dept.toUpperCase() === dept.toUpperCase() && (
                 <tr key={item.code} onClick={() => handleItemClick(item)}>
                   <td>{item.code}</td>
-                  <td>{item.name}</td>
+                  <td style={{textAlign: "left"}}>{item.name}</td>
                   <td>{item.fraction}</td>
-                  <td>{item.price}</td>
+                  {/* <td>{item.price}</td> */}
                 </tr>
               )
           )}
