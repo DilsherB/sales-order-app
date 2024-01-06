@@ -51,7 +51,7 @@ const SalesOrder = () => {
         const updatedItemsArray = [...itemsArray];
         updatedItemsArray[index].itemName = item.name;
         updatedItemsArray[index].itemFraction = item.fraction;
-        updatedItemsArray[index].itemPrice = item.price;
+        updatedItemsArray[index].itemPrice = item.SalesPrice;
         setItemsArray(updatedItemsArray);
       }
     });
@@ -100,12 +100,12 @@ const SalesOrder = () => {
   const priceDiff = () => {
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
-      isPriceDiff:
-        item.yourPrice > item.itemPrice
-          ? "**"
-          : item.yourPrice < item.itemPrice
-          ? "*"
-          : "",
+      isPriceDiff: (item.yourPrice - item.itemPrice).toFixed(2),
+        // item.yourPrice > item.itemPrice
+        //   ? "**"
+        //   : item.yourPrice < item.itemPrice
+        //   ? "*"
+        //   : "",
     }));
     setItemsArray(updatedItemsArray);
   };
@@ -119,7 +119,7 @@ const SalesOrder = () => {
             itemId: selectedItem.code,
             itemFraction: selectedItem.fraction,
             itemName: selectedItem.name,
-            itemPrice: selectedItem.price,
+            itemPrice: selectedItem.SalesPrice,
           };
         } else {
           return item;
