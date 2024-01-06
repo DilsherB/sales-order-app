@@ -535,7 +535,16 @@ const SalesOrder = () => {
               </th>
             </tr>
             <tr>
-              <td colSpan={2}>{addCommas(parseFloat(totalAmount))}</td>
+              <td>Total Special Price: </td>
+              <td>{addCommas(parseFloat(totalAmount))}</td>
+              <td colSpan={2}>{addCommas(totalAmount * 0.15)}</td>
+              <td colSpan={3}>
+                {addCommas(parseFloat(totalAmount + totalAmount * 0.15))}
+              </td>
+            </tr>
+            <tr>
+              <td>Total Regular Price: </td>
+              <td>{addCommas(parseFloat(totalAmount))}</td>
               <td colSpan={2}>{addCommas(totalAmount * 0.15)}</td>
               <td colSpan={3}>
                 {addCommas(parseFloat(totalAmount + totalAmount * 0.15))}
