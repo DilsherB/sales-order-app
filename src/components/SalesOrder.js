@@ -100,12 +100,8 @@ const SalesOrder = () => {
   const priceDiff = () => {
     const updatedItemsArray = itemsArray.map((item) => ({
       ...item,
-      isPriceDiff: (item.yourPrice - item.itemPrice).toFixed(2),
-        // item.yourPrice > item.itemPrice
-        //   ? "**"
-        //   : item.yourPrice < item.itemPrice
-        //   ? "*"
-        //   : "",
+      isPriceDiff:
+        item.yourPrice && (item.yourPrice - item.itemPrice).toFixed(2),
     }));
     setItemsArray(updatedItemsArray);
   };
