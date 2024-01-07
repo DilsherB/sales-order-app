@@ -255,10 +255,10 @@ const SalesOrder = () => {
   const showDuni = activeComponent === "duni";
   const handleShowDuni = () => handleShowComponent("duni");
 
-  const silkRoute = activeComponent === "silkRoute";
+  const showSilkRoute = activeComponent === "silkRoute";
   const handleShowSilkRoute = () => handleShowComponent("silkRoute");
 
-  const royalCotton = activeComponent === "royalCotton";
+  const showRoyalCotton = activeComponent === "royalCotton";
   const handleShowRoyalCotton = () => handleShowComponent("royalCotton");
 
   return (
@@ -589,8 +589,8 @@ const SalesOrder = () => {
       </div>
       {showArix && <ShowItems dept={"ax"} onItemClick={handleItemSelect} />}
       {showDuni && <ShowItems dept={"dn"} onItemClick={handleItemSelect} />}
-      {silkRoute && <ShowItems dept={"sr"} onItemClick={handleItemSelect} />}
-      {royalCotton && <ShowItems dept={"rc"} onItemClick={handleItemSelect} />}
+      {showSilkRoute && <ShowItems dept={"sr"} onItemClick={handleItemSelect} />}
+      {showRoyalCotton && <ShowItems dept={"rc"} onItemClick={handleItemSelect} />}
       <div
         className="d-flex justify-content-center border p-3 bg-primary text-white"
         style={{ borderRadius: "5px", fontSize: "2rem" }}
