@@ -38,6 +38,7 @@ const SalesOrder = () => {
       isPriceDiff: "",
       discount: "",
       amount: "",
+      regAmount: "",
     },
   ]);
 
@@ -81,8 +82,9 @@ const SalesOrder = () => {
       ...item,
 
       amount: item.yourPrice
-        ? item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100)
-        : item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100),
+        ? item.qty * (item.yourPrice - ((item.yourPrice * item.discount) / 100))
+        : item.qty * (item.itemPrice - ((item.itemPrice * item.discount) / 100)),
+      regAmount: item.qty * (item.itemPrice - ((item.itemPrice * item.discount) / 100)),
     }));
 
     if (
@@ -129,6 +131,10 @@ const SalesOrder = () => {
     (total, item) => total + item.amount,
     0
   );
+  const totalRegAmount = itemsArray.reduce(
+    (total, item) => total + item.regAmount,
+    0
+  );
 
   useEffect(() => {
     setCurrentDate(getCurrentDate);
@@ -156,6 +162,7 @@ const SalesOrder = () => {
         isPriceDiff: "",
         discount: "",
         amount: "",
+        regAmount: "",
       },
     ]);
   };
@@ -212,6 +219,14 @@ const SalesOrder = () => {
         "Price Diff": item.isPriceDiff,
         Discount: item.discount,
       })),
+      {
+        "Total Special Price": totalAmount,
+        "Total Regular Price": totalRegAmount,
+        "VAT on Special Price": totalAmount * 0.15,
+        "VAT on Regular Price": totalRegAmount * 0.15,
+        "Net Total Special Price": totalAmount + totalAmount * 0.15,
+        "Net Total Regular Price": totalRegAmount + totalRegAmount * 0.15,
+      },
     ]);
 
     const wb = XLSX.utils.book_new();
@@ -518,6 +533,9 @@ const SalesOrder = () => {
                 <td hidden>
                   <input type="number" value={item.amount} readOnly />
                 </td>
+                <td hidden>
+                  <input type="number" value={item.regAmount} readOnly />
+                </td>
               </tr>
             ))}
             <tr>
@@ -544,10 +562,10 @@ const SalesOrder = () => {
             </tr>
             <tr>
               <td>Total Regular Price: </td>
-              <td>{addCommas(parseFloat(totalAmount))}</td>
-              <td colSpan={2}>{addCommas(totalAmount * 0.15)}</td>
+              <td>{addCommas(parseFloat(totalRegAmount))}</td>
+              <td colSpan={2}>{addCommas(totalRegAmount * 0.15)}</td>
               <td colSpan={3}>
-                {addCommas(parseFloat(totalAmount + totalAmount * 0.15))}
+                {addCommas(parseFloat(totalRegAmount + totalRegAmount * 0.15))}
               </td>
             </tr>
           </tbody>
