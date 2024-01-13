@@ -19,6 +19,7 @@ const SalesOrder = () => {
   const initialState = "";
   const [name, setName] = useState(initialState);
   const [customerId, setCustomerId] = useState("");
+  const [customerBrId, setCustomerBrId] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const [deliveryDate, setDeliveryDate] = useState("");
   const [po, setPo] = useState("");
@@ -82,9 +83,10 @@ const SalesOrder = () => {
       ...item,
 
       amount: item.yourPrice
-        ? item.qty * (item.yourPrice - ((item.yourPrice * item.discount) / 100))
-        : item.qty * (item.itemPrice - ((item.itemPrice * item.discount) / 100)),
-      regAmount: item.qty * (item.itemPrice - ((item.itemPrice * item.discount) / 100)),
+        ? item.qty * (item.yourPrice - (item.yourPrice * item.discount) / 100)
+        : item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100),
+      regAmount:
+        item.qty * (item.itemPrice - (item.itemPrice * item.discount) / 100),
     }));
 
     if (
@@ -206,6 +208,7 @@ const SalesOrder = () => {
         "Salesman Name": smName,
         "Salesman Code": smCode,
         "Customer Code": customerId,
+        "Customer Branch Code": customerBrId,
         "Customer Name": name,
         Remarks: rem,
       },
@@ -327,6 +330,22 @@ const SalesOrder = () => {
           </div>
           <div className="col-6 oneUnit">
             <h3 className="flexBtw">
+              <div>Remarks</div> : <div>ملاحظات</div>
+            </h3>
+            <input
+              type="text"
+              value={rem}
+              onChange={(e) => setRem(e.target.value)}
+            />
+          </div>
+          
+        </div>
+        <h3 style={{ padding: "1rem" }}>
+          Customer Name: <i style={{ color: "blue" }}>{name}</i>
+        </h3>
+        <div className="d-flex">
+        <div className="col-6 oneUnit">
+            <h3 className="flexBtw">
               <div>Cust. Code</div> : <div>كود العميل</div>
             </h3>
             <input
@@ -338,19 +357,19 @@ const SalesOrder = () => {
               required
             />
           </div>
-        </div>
-        <h3 style={{ padding: "1rem" }}>
-          Customer Name: <i style={{ color: "blue" }}>{name}</i>
-        </h3>
-        <div className="oneUnit">
-          <h3 className="flexBtw">
-            <div>Remarks</div> : <div>ملاحظات</div>
-          </h3>
-          <input
-            type="text"
-            value={rem}
-            onChange={(e) => setRem(e.target.value)}
-          />
+          <div className="col-6 oneUnit">
+            <h3 className="flexBtw">
+              <div>Cust. Branch Code/Name</div> : <div>رمز/اسم الفرع العميل</div>
+            </h3>
+            <input
+              type="text"
+              id="customerBrCode"
+              value={customerBrId}
+              onChange={(e) => setCustomerBrId(e.target.value)}
+              onBlur={showName}
+              required
+            />
+          </div>
         </div>
         <div
           style={{
@@ -589,8 +608,12 @@ const SalesOrder = () => {
       </div>
       {showArix && <ShowItems dept={"ax"} onItemClick={handleItemSelect} />}
       {showDuni && <ShowItems dept={"dn"} onItemClick={handleItemSelect} />}
-      {showSilkRoute && <ShowItems dept={"sr"} onItemClick={handleItemSelect} />}
-      {showRoyalCotton && <ShowItems dept={"rc"} onItemClick={handleItemSelect} />}
+      {showSilkRoute && (
+        <ShowItems dept={"sr"} onItemClick={handleItemSelect} />
+      )}
+      {showRoyalCotton && (
+        <ShowItems dept={"rc"} onItemClick={handleItemSelect} />
+      )}
       <div
         className="d-flex justify-content-center border p-3 bg-primary text-white"
         style={{ borderRadius: "5px", fontSize: "2rem" }}
