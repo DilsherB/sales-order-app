@@ -1189,6 +1189,7 @@ const customers = [
   { code: "R201818", name: "MOHAMMED MOHSIN" },
   { code: "R201819", name: "SAMI ULLAH KHAN" },
   { code: "R201820", name: "MD AMIN" },
+  { code: "5022200000", name: "Durrat Obhur Central Markets" },
 ];
 
 export default customers;
