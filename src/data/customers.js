@@ -1190,6 +1190,14 @@ const customers = [
   { code: "R201819", name: "SAMI ULLAH KHAN" },
   { code: "R201820", name: "MD AMIN" },
   { code: "5022200000", name: "Durrat Obhur Central Markets" },
+  { code: "1NH004", name: "Sarah Perfumes" },
+  { code: "1SS013", name: "Al Kawathar Roses - Hassa" },
+  { code: "1SS014", name: "Buken Parice Mubaraz - Hassa" },
+  { code: "1SS018", name: "Al Mounaseb Est. - Hassa" },
+  { code: "416005", name: "Al Faozan FPR Plastic Est." },
+  { code: "3150310000", name: "ABDULLAH AWAD AL OBTHANI" },
+  { code: "1300130000", name: "Al Hosn Al Shamil Trading Est." },
+  { code: "3000010000", name: "NADA ALOWAID" },
 ];
 
 export default customers;
