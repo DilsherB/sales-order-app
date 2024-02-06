@@ -6,6 +6,15 @@ body {
   margin: 0;
 }
 
+.alowaidLogo {
+  width:max-content;
+  background-color: transparent;
+  height: 5rem;
+  object-fit:contain;
+  cursor: default;
+
+}
+
 .header {
   text-align: center;
 }

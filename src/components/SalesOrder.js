@@ -7,6 +7,7 @@ import arixlogo from "./images/arixlogo.jpg";
 import dunilogo from "./images/dunilogo.png";
 import srlogo from "./images/srlogo.jpg";
 import rclogo from "./images/rclogo.jpg";
+import alowaid from "./images/alowaid.jpg";
 import salesmen from "../data/salesmen";
 import {
   getCurrentDate,
@@ -268,7 +269,12 @@ const SalesOrder = () => {
     <div className="container-fluid">
       <form style={{ padding: "1rem" }}>
         <div className="header">
-          <h1>Alowaid Trading Est.</h1>
+          <img 
+            src={alowaid}
+            className="alowaidLogo"
+            alt="Alowaid Logo"
+          />
+          {/* <h1>Alowaid Trading Est.</h1> */}
           <h2>Sales Order</h2>
           <hr />
         </div>
